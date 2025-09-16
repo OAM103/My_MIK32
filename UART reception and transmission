@@ -1,0 +1,12 @@
+#include "uart_lib.h"
+#include "xprintf.h"
+
+// инициализация 
+UART_Init(UART_0, 3333, UART_CONTROL1_TE_M | UART_CONTROL1_M_8BIT_M | UART_CONTROL1_RE_M, 0, 0);
+
+// прием данных 
+if(!UART_IsRxFifoEmpty(UART_0)){
+        uint16_t byte = UART_ReadByte(UART_0);
+}
+// передача данных
+xprintf("привет мир: %d\n", 100);
