@@ -1,0 +1,23 @@
+
+Установка зависимостей:
+
+pip install -r requiremenst.txt
+Использование
+python img2rgb565.py <input_image> [--output <output_file>] [--resize WIDTH HEIGHT] [--name VAR_NAME]
+<input_image>: Путь к входному файлу изображения (например, PNG, JPG).
+--output, -o: выходной двоичный файл (например, image.bin). Если не указано иное, код Arduino выводится на стандартный вывод.
+--resize WIDTH HEIGHTПеред преобразованием измените размер изображения до указанных значений.
+--name VAR_NAME: имя переменной для массива Arduino (по умолчанию: my_image).
+Примеры
+Сгенерировать массив Arduino C:
+
+python img2rgb565.py mypic.png --resize 128 160 --name mypic
+Сгенерировать двоичный файл:
+
+python img2rgb565.py mypic.png --resize 128 160 --output mypic.bin
+Выходной сигнал
+Массив Arduino C: выводит const uint16_t массив и размеры изображения для непосредственного использования в скетчах Arduino.
+Бинарный файл: Создаёт .bin-файл с данными RGB565 (с прямым порядком байтов) для прямой загрузки на встроенные устройства.
+
+Для LCD TFT SPI 3.5": python img2rgb565.py img.png --resize 480 320 --name img
+                      python img2rgb565.py img.png --resize 480 320 --name img > img.h
