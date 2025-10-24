@@ -78,9 +78,7 @@ lcd.c — низкоуровневые функции отрисовки чер�
 
 | Экран игры                               | Победа                                  | Проигрыш                                 |
 | ---------------------------------------- | --------------------------------------- | ---------------------------------------- |
-|![photo_2025-10-24_11-22-09](https://github.com/user-attachments/assets/926603c8-84b8-48b2-b5bf-7e9f1dac2253) | ![photo_2025-10-24_11-22-06](https://github.com/user-attachments/assets/ce98ac56-37b2-409c-a63f-d9dd21fdd117)
- | ![photo_2025-10-24_11-22-12](https://github.com/user-attachments/assets/0abd60d9-628a-437e-817c-7a788c16df85)
- |
+|![photo_2025-10-24_11-22-09](https://github.com/user-attachments/assets/926603c8-84b8-48b2-b5bf-7e9f1dac2253) | ![photo_2025-10-24_11-22-06](https://github.com/user-attachments/assets/ce98ac56-37b2-409c-a63f-d9dd21fdd117)| ![photo_2025-10-24_11-22-12](https://github.com/user-attachments/assets/0abd60d9-628a-437e-817c-7a788c16df85)|
 
 ---
 
