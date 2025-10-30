@@ -1,0 +1,85 @@
+Запуск 3Д с помощью тачпада(Что нужно подправить, чтобы работало)
+
+#include <stdlib.h>
+#include <string.h>
+#include "uart_lib.h"
+#include "system_config.h"
+#include "lcd.h"
+#include "touchpad.h"
+#include "transform.h"
+#include "cube.h"
+
+#define BG_COLOR 0x0000
+#define RECT_COLOR 0xFFFF
+
+extern int cube_moved;
+
+int main()
+{
+    SystemClock_Config();
+    SPI0_Init();
+    SPI1_Init();
+    GPIO_Init();
+    Lcd_Init();
+    DMA_Init();
+
+    ClearMass(480, 320, 0, 0, BG_COLOR);
+    // Rectangle rect = { 100, 150, 100, 60 };
+    // draw_rectangle(&rect, 0xFFFF);
+
+    while (1) {
+        //rotate_rectangle(&rect, BG_COLOR, RECT_COLOR);
+        //dynamic_rectangle(&rect, BG_COLOR, RECT_COLOR);
+
+        rotate_cube_touch();
+        draw_cube(BG_COLOR, RECT_COLOR);
+    }
+}
+
+
+
+void GPIO_Init()
+{
+    GPIO_InitTypeDef GPIO_InitStruct = {0};
+
+    __HAL_PCC_GPIO_0_CLK_ENABLE();
+    __HAL_PCC_GPIO_1_CLK_ENABLE();
+    __HAL_PCC_GPIO_2_CLK_ENABLE();
+    __HAL_PCC_GPIO_IRQ_CLK_ENABLE();
+
+    GPIO_InitStruct.Pin = SLAVE_CS0 | SLAVE_CS1 | SLAVE_CS2;
+    GPIO_InitStruct.Mode = HAL_GPIO_MODE_GPIO_OUTPUT;
+    GPIO_InitStruct.Pull = HAL_GPIO_PULL_NONE;
+    HAL_GPIO_Init(GPIO_CS, &GPIO_InitStruct);
+
+    GPIO_InitStruct.Pin = GPIO_PIN_14;
+    GPIO_InitStruct.Mode = HAL_GPIO_MODE_GPIO_INPUT;
+    HAL_GPIO_Init(GPIO_0, &GPIO_InitStruct);
+
+    HAL_GPIO_InitInterruptLine(GPIO_MUX_PORT0_14_LINE_6, GPIO_INT_MODE_CHANGE); // ENC_But
+
+}
+
+void SPI1_Init(void)
+{
+hspi1.Instance = SPI_1;
+
+    /* Режим SPI */
+    hspi1.Init.SPI_Mode = HAL_SPI_MODE_MASTER;
+
+    /* Настройки */
+    hspi1.Init.CLKPhase = SPI_PHASE_ON;
+    hspi1.Init.CLKPolarity = SPI_POLARITY_HIGH;
+    hspi1.Init.ThresholdTX = 4;
+
+    /* Настройки для ведущего */
+    hspi1.Init.BaudRateDiv = SPI_BAUDRATE_DIV4;
+    hspi1.Init.Decoder = SPI_DECODER_NONE;
+    hspi1.Init.ManualCS = SPI_MANUALCS_ON;
+    hspi1.Init.ChipSelect = SPI_CS_0;      
+
+    if (HAL_SPI_Init(&hspi1) != HAL_OK)
+    {
+        xprintf("SPI_Init_Error\n");
+    }
+}
