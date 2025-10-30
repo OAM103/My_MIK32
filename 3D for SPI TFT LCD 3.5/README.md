@@ -1,4 +1,4 @@
-![photo_5_2025-10-30_16-47-58](https://github.com/user-attachments/assets/1c017264-df0d-4507-81e6-20dd8b8f97ff)# Touchpad & Joystick 3D — Управление и псевдо-3D на SPI TFT LCD 3.5" с помощью микроконтроллера MIK32
+# Touchpad & Joystick 3D — Управление и псевдо-3D на SPI TFT LCD 3.5" с помощью микроконтроллера MIK32
 
 Кратко: проект реализует масштабирование и вращение прямоугольника (тачпадом), псевдо‑3D отображение на экране и поворот 3D‑куба как с тачпада, так и с джойстика.
 ---
@@ -171,20 +171,20 @@
 
 ## Фотографии
 
-![Тачпад масштабирование прямоугольника](![photo_5_2025-10-30_16-47-58](https://github.com/user-attachments/assets/52012271-95f3-45ca-b974-6bc1b0a9e768))
+![Тачпад масштабирование прямоугольника](https://github.com/user-attachments/assets/52012271-95f3-45ca-b974-6bc1b0a9e768)
 *Масштабирование прямоугольника.*
 
-![Тачпад вращение прямоугольника](![photo_4_2025-10-30_16-47-58](https://github.com/user-attachments/assets/f4e6012b-28b2-434a-913d-090eead5be53))
+![Тачпад вращение прямоугольника](https://github.com/user-attachments/assets/f4e6012b-28b2-434a-913d-090eead5be53)
 *Вращение прямоугольника.*
 
-![Псевдо-3D и куб](![photo_3_2025-10-30_16-47-58](https://github.com/user-attachments/assets/afc36ec9-241e-45d9-be69-47e9f76d79f5))
-*Псевдо‑3D — куб в перспективе.*
+![Псевдо-3D и куб](https://github.com/user-attachments/assets/afc36ec9-241e-45d9-be69-47e9f76d79f5)
+*Псевдо-3D — куб в перспективе.*
 
-![Джойстик вращение куба](![photo_2_2025-10-30_16-47-58](https://github.com/user-attachments/assets/eaad91bb-f469-4123-ab8e-c40896147b29))
-*Управление кубом с помощью джойстика.* 
+![Джойстик вращение куба](https://github.com/user-attachments/assets/eaad91bb-f469-4123-ab8e-c40896147b29)
+*Управление кубом с помощью джойстика.*
 
-![Тачпад вращение куба](![photo_1_2025-10-30_16-47-58](https://github.com/user-attachments/assets/fae06a9e-94fe-4297-a9cc-294768efa4f7))
-*Управление кубом с помощью джойстика.* 
+![Тачпад вращение куба](https://github.com/user-attachments/assets/fae06a9e-94fe-4297-a9cc-294768efa4f7)
+*Вращение куба с помощью тачпада.*
 
 
 
