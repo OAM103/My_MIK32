@@ -24,8 +24,8 @@ UART (вывод логов)
 Питание: 12 В (контролируется через ADC)
 ##📷 Фото подключения ПЛК
 (добавь фото сюда)
-![PLC connection](<img width="1280" height="960" alt="image" src="https://github.com/user-attachments/assets/48543e0c-7177-49f1-ad41-2bafa5fc3eb1" />) 
-![PLC connection](<img width="1280" height="960" alt="image" src="https://github.com/user-attachments/assets/3a4eb0b6-db55-4604-aa94-ca2b5e810cb2" />) 
+<img width="1280" height="960" alt="image" src="https://github.com/user-attachments/assets/48543e0c-7177-49f1-ad41-2bafa5fc3eb1" />
+<img width="1280" height="960" alt="image" src="https://github.com/user-attachments/assets/3a4eb0b6-db55-4604-aa94-ca2b5e810cb2" />
 
 ## Логика работы
 
