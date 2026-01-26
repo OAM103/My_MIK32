@@ -57,9 +57,9 @@
 
 На данный момент реализованы:
 
-- 🍖 **Голод**<img width="10" height="10" alt="food" src="https://github.com/user-attachments/assets/3678df7d-4ee8-4f51-8ae0-10723afef8fe" />
-- 😊 **Счастье**<img width="10" height="10" alt="happy" src="https://github.com/user-attachments/assets/ee48ab8e-1ecc-43c0-9466-7b8d78bd1fe7" />
-- ⚡ **Энергия**<img width="10" height="10" alt="sleep" src="https://github.com/user-attachments/assets/832154e5-cd9d-45de-aa6b-a359d4701dfd" />
+- **Голод** <img width="10" height="10" alt="food" src="https://github.com/user-attachments/assets/3678df7d-4ee8-4f51-8ae0-10723afef8fe" />
+- **Счастье** <img width="10" height="10" alt="happy" src="https://github.com/user-attachments/assets/ee48ab8e-1ecc-43c0-9466-7b8d78bd1fe7" />
+- **Энергия** <img width="10" height="10" alt="sleep" src="https://github.com/user-attachments/assets/832154e5-cd9d-45de-aa6b-a359d4701dfd" />
 
 В перспективе можно добавить:
 - здоровье
@@ -72,9 +72,12 @@
 
 Доступные действия:
 
-- 🍗 **Покормить** <img width="840" height="1217" alt="3" src="https://github.com/user-attachments/assets/b1c71b44-34d4-4c32-801d-c30f203c3f31" />
-- 🤍 **Погладить / поиграть** <img width="840" height="1217" alt="2" src="https://github.com/user-attachments/assets/b7ddbbc3-8020-480a-b900-2d13db713075" />
-- 😴 **Отправить спать** <img width="840" height="1217" alt="3" src="https://github.com/user-attachments/assets/f66b76bd-022d-4970-bb08-da86ae56c9c8" />
+- 🍗 **Покормить**
+  <img width="840" height="1217" alt="3" src="https://github.com/user-attachments/assets/b1c71b44-34d4-4c32-801d-c30f203c3f31" />
+- 🤍 **Погладить / поиграть**
+  <img width="840" height="1217" alt="2" src="https://github.com/user-attachments/assets/b7ddbbc3-8020-480a-b900-2d13db713075" />
+- 😴 **Отправить спать**
+  <img width="840" height="1217" alt="3" src="https://github.com/user-attachments/assets/f66b76bd-022d-4970-bb08-da86ae56c9c8" />
 
 ---
 
