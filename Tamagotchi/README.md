@@ -8,7 +8,7 @@
 - работу с низкоуровневым железом,
 - графику и анимацию,
 - обработку тач-жестов
-![Idle fox](https://github.com/user-attachments/assets/f740c85e-146a-406c-9a68-9cc162f0d009)
+<img width="882" height="1110" alt="photo_2026-01-26_16-12-57" src="https://github.com/user-attachments/assets/e5c1c520-1392-4036-afbe-925bd2978341" />
 
 ---
 
@@ -19,14 +19,27 @@
 <img width="200" height="200" alt="Хвост_00002" src="https://github.com/user-attachments/assets/8e79490e-a528-492c-bfe9-6508f7bc6321" />
 <img width="200" height="200" alt="Хвост_00003" src="https://github.com/user-attachments/assets/4d74adaf-e6f1-4d6a-bf46-4eac751f412c" />
 
+### Моргание
+<img width="200" height="200" alt="Моргание_00002" src="https://github.com/user-attachments/assets/63efd2c4-e4f6-4e47-813b-922cf6a8a865" />
+<img width="200" height="200" alt="Моргание_00003" src="https://github.com/user-attachments/assets/070b4482-3a39-4d4f-9fa4-b6b09e6fef45" />
+<img width="200" height="200" alt="Моргание_00004" src="https://github.com/user-attachments/assets/a5669397-709e-40ca-9f52-7523073c429a" />
+
 ### Умиление
-![Cute animation](assets/fox_cute.gif)
+<img width="200" height="200" alt="Милота_00001" src="https://github.com/user-attachments/assets/23e954bf-0d8c-4f26-9d1c-dbd7fbdaa5a3" />
 
 ### Сон
-![Sleep animation](assets/fox_sleep.gif)
+<img width="200" height="200" alt="Сон_00001" src="https://github.com/user-attachments/assets/40ecb95e-6af2-4b98-a2c2-cdec6314b1c2" />
 
 ### Кормление
-![Eating](assets/fox_eat.gif)
+<img width="200" height="200" alt="Рот_00001" src="https://github.com/user-attachments/assets/ce9bfd24-24be-4e48-aa23-3066ea26f5d8" />
+<img width="200" height="200" alt="chew_00001" src="https://github.com/user-attachments/assets/794f99d3-bc37-4e63-8961-5027dd4f8a05" />
+<img width="831" height="1256" alt="photo_2026-01-26_16-12-55" src="https://github.com/user-attachments/assets/4afd386e-a9aa-4656-a8c0-ee9586dcf199" />
+
+### Голод/грусть
+<img width="200" height="200" alt="Грусть_00001" src="https://github.com/user-attachments/assets/4c897e8d-480c-44bc-9146-a0dff34cfa79" />
+
+### Усталость
+<img width="200" height="200" alt="Усталость" src="https://github.com/user-attachments/assets/8010206a-501c-4cda-9809-9a73794cf590" />
 
 ---
 
@@ -44,14 +57,13 @@
 
 На данный момент реализованы:
 
-- 🍖 **Голод**
-- 😊 **Счастье**
-- ⚡ **Энергия**
+- 🍖 **Голод**<img width="10" height="10" alt="food" src="https://github.com/user-attachments/assets/3678df7d-4ee8-4f51-8ae0-10723afef8fe" />
+- 😊 **Счастье**<img width="10" height="10" alt="happy" src="https://github.com/user-attachments/assets/ee48ab8e-1ecc-43c0-9466-7b8d78bd1fe7" />
+- ⚡ **Энергия**<img width="10" height="10" alt="sleep" src="https://github.com/user-attachments/assets/832154e5-cd9d-45de-aa6b-a359d4701dfd" />
 
 В перспективе можно добавить:
 - здоровье
 - возраст
-- настроение
 - скрытые параметры
 
 ---
@@ -60,9 +72,9 @@
 
 Доступные действия:
 
-- 🍗 **Покормить**
-- 🤍 **Погладить / поиграть**
-- 😴 **Отправить спать**
+- 🍗 **Покормить** <img width="840" height="1217" alt="3" src="https://github.com/user-attachments/assets/b1c71b44-34d4-4c32-801d-c30f203c3f31" />
+- 🤍 **Погладить / поиграть** <img width="840" height="1217" alt="2" src="https://github.com/user-attachments/assets/b7ddbbc3-8020-480a-b900-2d13db713075" />
+- 😴 **Отправить спать** <img width="840" height="1217" alt="3" src="https://github.com/user-attachments/assets/f66b76bd-022d-4970-bb08-da86ae56c9c8" />
 
 ---
 
@@ -113,24 +125,12 @@
 ### 🍽️ Еда
 | Яйцо | Курица | Рыба |
 |-----|--------|------|
-| ![](assets/egg.png) | ![](assets/chicken.png) | ![](assets/fish.png) |
-
----
-
-### 📈 Иконки статистики
-- 💧 Сон
-- ❤️ Счастье
-- 🍖 Голод
-
-| Сон | Счастье | Голод |
-|----|---------|-------|
-| ![](assets/icon_sleep.png) | ![](assets/icon_heart.png) | ![](assets/icon_hunger.png) |
+| <img width="32" height="40" alt="egg" src="https://github.com/user-attachments/assets/9f9cf06d-75e0-429f-9eda-88d3129846c4" /> |<img width="50" height="50" alt="chicken" src="https://github.com/user-attachments/assets/09d68766-774b-487c-9c95-c7a518682425" /> |<img width="84" height="55" alt="fish" src="https://github.com/user-attachments/assets/9b523d36-b81b-4e7a-acea-82aeb3e4ff76" />|
 
 ---
 
 ## 🛠️ Этапы разработки
 
-text
 ✓ Шаг 1: Работа с Flash
 ✓ Шаг 2: Работа с RTC
 ✓ Шаг 3: EEPROM и сохранение данных
@@ -169,7 +169,3 @@ text
 Проект создаётся как учебный и исследовательский,
 с любовью к низкоуровневому программированию и милым пикселям 🦊
 
-##Автор
-
-Проект создаётся как учебный и исследовательский,
-с любовью к низкоуровневому программированию и милым пикселям 🦊
