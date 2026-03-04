@@ -2,7 +2,11 @@
 
 ## Коротко  
    Музыкальный плеер с графическим интерфейсом для отладочной платы DIP‑MIK32 и TFT 3.5" (ILI9486). Управление — через сенсорный экран. Воспроизведение — через 12‑бит DAC + Timer32 + DMA. Интерфейс рисуется через SPI + DMA.
-<img width="666" height="950" alt="photo_2026-03-04_12-21-28" src="(https://github.com/user-attachments/assets/4138491e-38ac-4833-90f1-bf44cafffbc4" />
+
+![photo_2026-03-04_12-21-28](https://github.com/user-attachments/assets/35784d93-6e7d-42d5-9b08-85fafe91e526)
+![photo_2026-03-04_12-21-35](https://github.com/user-attachments/assets/62b7095c-7b1e-4464-9062-967e2d6e5bbe)
+
+
 ## Содержимое репозитория (основное)
 - main.c — инициализация, основной цикл, обработка тача/кнопок.  
 - system_config.c/.h — настройка SPI0 (LCD), SPI1 (тач), DMA, Timer32, DAC.  
