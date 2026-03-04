@@ -2,10 +2,8 @@
 
 ## Коротко  
    Музыкальный плеер с графическим интерфейсом для отладочной платы DIP‑MIK32 и TFT 3.5" (ILI9486). Управление — через сенсорный экран. Воспроизведение — через 12‑бит DAC + Timer32 + DMA. Интерфейс рисуется через SPI + DMA.
-   
-<img width="200" height="200" alt="Хвост_00001" src="https://github.com/user-attachments/assets/558aa61e-a8ed-4f86-a4b4-1eab2f29aae7" />
-<img width="200" height="200" alt="Хвост_00002" src="https://github.com/user-attachments/assets/8e79490e-a528-492c-bfe9-6508f7bc6321" />
-<img width="200" height="200" alt="Хвост_00003" src="https://github.com/user-attachments/assets/4d74adaf-e6f1-4d6a-bf46-4eac751f412c" />
+
+<img width="950" height="666" alt="photo_2026-03-04_12-21-28" src="[https://github.com/user-attachments/assets/558aa61e-a8ed-4f86-a4b4-1eab2f29aae7](https://github.com/user-attachments/assets/7fbc72bd-8c5e-405d-ad4d-aed70a49ba07)" />
 
 ## Содержимое репозитория (основное)
 - main.c — инициализация, основной цикл, обработка тача/кнопок.  
