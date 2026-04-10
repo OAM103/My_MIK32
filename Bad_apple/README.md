@@ -1,9 +1,7 @@
 # 🎬 Реализация воспроизведения видеопотока и аудиосигнала на микроконтроллере MIK32 (Bad Apple)
 
 
-
-https://github.com/user-attachments/assets/629dc9c3-38d4-43c6-a984-cc9d13bcbde5
-
+https://github.com/user-attachments/assets/2f1c8690-bd03-4115-9f9f-8367f465871a
 
 
 ## Аннотация
