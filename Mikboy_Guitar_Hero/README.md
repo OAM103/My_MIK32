@@ -1,4 +1,4 @@
-[08.06.2026 11:57] Анастасия Обухова: # Guitar Hero Mini Edition for MikBoy (MIK32 Амур)
+# Guitar Hero Mini Edition for MikBoy (MIK32 Амур)
 
 Проект представляет собой портативную ритм-игру в стиле Guitar Hero, разработанную для игровой консоли MikBoy на базе микроконтроллера MIK32 Амур. Игрок должен нажимать кнопки направления в такт музыке, когда летящие стрелки достигают зоны попадания.
 
@@ -17,7 +17,7 @@
 
 ### Стартовый экран
 
-![Start Screen](images/start_screen.png)
+![Start Screen](<img width="1920" height="2560" alt="photo_1_2026-06-08_11-31-30" src="https://github.com/user-attachments/assets/f147fdc8-d1b7-44d9-b3d8-c9c617367f82" />)
 
 После запуска отображается заставка игры и приглашение начать игру кнопкой **A**.
 
@@ -25,13 +25,13 @@
 
 ### Обратный отсчёт
 
-![Countdown Ready](images/countdown_ready.png)
+![Countdown Ready](<img width="1920" height="2560" alt="photo_2_2026-06-08_11-31-30" src="https://github.com/user-attachments/assets/825a065e-275a-42fa-b138-bb25410b4837" />)
 
-![Countdown 3](images/countdown_3.png)
+![Countdown 3](<img width="1920" height="2560" alt="photo_3_2026-06-08_11-31-30" src="https://github.com/user-attachments/assets/ea368a81-40da-47fb-b6c9-3179ab33524c" />)
 
-![Countdown 2](images/countdown_2.png)
+![Countdown 2](<img width="1920" height="2560" alt="photo_4_2026-06-08_11-31-30" src="https://github.com/user-attachments/assets/c046f51c-03dc-4168-88cb-e8c4f7ea82e3" />)
 
-![Countdown 1](images/countdown_1.png)
+![Countdown 1](<img width="1920" height="2560" alt="photo_5_2026-06-08_11-31-30" src="https://github.com/user-attachments/assets/dfe3d8b1-c93c-486d-9f84-9b7984fbbadd" />)
 
 Перед началом уровня выполняется обратный отсчёт, позволяющий игроку подготовиться к началу музыкальной партии.
 
@@ -39,7 +39,7 @@
 
 ### Игровой процесс
 
-![Gameplay](images/gameplay.png)
+![Gameplay](<img width="1920" height="2560" alt="photo_6_2026-06-08_11-31-30" src="https://github.com/user-attachments/assets/f7a5bfe2-227f-4bf6-8f30-3857ccaea3f7" />)
 
 Во время игры по четырём дорожкам движутся стрелки. Необходимо нажимать соответствующие кнопки в момент прохождения стрелки через зону попадания.
 
@@ -47,7 +47,7 @@
 
 ### Экран завершения
 
-![Game Over](images/game_over.png)
+![Game Over](<img width="1920" height="2560" alt="photo_7_2026-06-08_11-31-30" src="https://github.com/user-attachments/assets/0d0390fd-005d-4d91-a40c-fb321efd8c04" />)
 
 После окончания композиции отображается подробная статистика:
 
@@ -77,7 +77,7 @@ cpp
 {42 * SEC + 445, 3},
 Где:
 
-* первое значение — время появления в миллисекундах;
+* первое значение — время появления в миллисекундах (SEC = 1000 мс);
 * второе значение — дорожка:
 
 | Значение | Направление |
@@ -235,7 +235,7 @@ uint16_t dac_buf1[DAC_BUF_SIZE];
 Слой инициализации платформы.
 
 Настраивает:
-[08.06.2026 11:57] Анастасия Обухова: * тактирование системы;
+* тактирование системы;
 * GPIO;
 * SPI;
 * DMA;
