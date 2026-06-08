@@ -28,14 +28,12 @@
 ---
 
 ### Обратный отсчёт
-
-![Countdown Ready](<img width="1920" height="2560" alt="photo_2_2026-06-08_11-31-30" src="https://github.com/user-attachments/assets/825a065e-275a-42fa-b138-bb25410b4837" />)
-
-![Countdown 3](<img width="1920" height="2560" alt="photo_3_2026-06-08_11-31-30" src="https://github.com/user-attachments/assets/ea368a81-40da-47fb-b6c9-3179ab33524c" />)
-
-![Countdown 2](<img width="1920" height="2560" alt="photo_4_2026-06-08_11-31-30" src="https://github.com/user-attachments/assets/c046f51c-03dc-4168-88cb-e8c4f7ea82e3" />)
-
-![Countdown 1](<img width="1920" height="2560" alt="photo_5_2026-06-08_11-31-30" src="https://github.com/user-attachments/assets/dfe3d8b1-c93c-486d-9f84-9b7984fbbadd" />)
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/825a065e-275a-42fa-b138-bb25410b4837" width="200"/>
+  <img src="https://github.com/user-attachments/assets/ea368a81-40da-47fb-b6c9-3179ab33524c" width="200"/>
+  <img src="https://github.com/user-attachments/assets/c046f51c-03dc-4168-88cb-e8c4f7ea82e3" width="200"/>
+  <img src="https://github.com/user-attachments/assets/dfe3d8b1-c93c-486d-9f84-9b7984fbbadd" width="200"/>
+</p>
 
 Перед началом уровня выполняется обратный отсчёт, позволяющий игроку подготовиться к началу музыкальной партии.
 
