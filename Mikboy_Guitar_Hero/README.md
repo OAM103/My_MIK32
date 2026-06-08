@@ -17,7 +17,7 @@
 
 ### Стартовый экран
 
-(<img width="1920" height="2560" alt="photo_1_2026-06-08_11-31-30" src="https://github.com/user-attachments/assets/f147fdc8-d1b7-44d9-b3d8-c9c617367f82" />)
+![Start Screen](https://github.com/user-attachments/assets/f147fdc8-d1b7-44d9-b3d8-c9c617367f82)
 
 После запуска отображается заставка игры и приглашение начать игру кнопкой **A**.
 
