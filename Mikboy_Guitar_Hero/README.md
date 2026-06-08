@@ -41,7 +41,11 @@
 
 ### Игровой процесс
 
-![Gameplay](<img width="1920" height="2560" alt="photo_6_2026-06-08_11-31-30" src="https://github.com/user-attachments/assets/f7a5bfe2-227f-4bf6-8f30-3857ccaea3f7" />)
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/f147fdc8-d1b7-44d9-b3d8-c9c617367f82"
+       width="400"
+       alt="Start Screen"/>
+</p>
 
 Во время игры по четырём дорожкам движутся стрелки. Необходимо нажимать соответствующие кнопки в момент прохождения стрелки через зону попадания.
 
@@ -49,7 +53,11 @@
 
 ### Экран завершения
 
-![Game Over](<img width="1920" height="2560" alt="photo_7_2026-06-08_11-31-30" src="https://github.com/user-attachments/assets/0d0390fd-005d-4d91-a40c-fb321efd8c04" />)
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/f7a5bfe2-227f-4bf6-8f30-3857ccaea3f7"
+       width="400"
+       alt="Start Screen"/>
+</p>
 
 После окончания композиции отображается подробная статистика:
 
