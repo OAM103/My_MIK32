@@ -17,7 +17,12 @@
 
 ### Стартовый экран
 
-![Start Screen](https://github.com/user-attachments/assets/f147fdc8-d1b7-44d9-b3d8-c9c617367f82)
+<figure>
+  <img src="https://github.com/user-attachments/assets/f147fdc8-d1b7-44d9-b3d8-c9c617367f82"
+       alt="Start Screen"
+       width="400"/>
+  <figcaption>Start Screen</figcaption>
+</figure>
 
 После запуска отображается заставка игры и приглашение начать игру кнопкой **A**.
 
