@@ -42,7 +42,7 @@
 ### Игровой процесс
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/f147fdc8-d1b7-44d9-b3d8-c9c617367f82"
+  <img src="https://github.com/user-attachments/assets/f7a5bfe2-227f-4bf6-8f30-3857ccaea3f7"
        width="400"
        alt="Start Screen"/>
 </p>
@@ -54,7 +54,7 @@
 ### Экран завершения
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/f7a5bfe2-227f-4bf6-8f30-3857ccaea3f7"
+  <img src="https://github.com/user-attachments/assets/3f16e8c2-ae41-446e-aed0-1736e1dc0e11"
        width="400"
        alt="Start Screen"/>
 </p>
