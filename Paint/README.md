@@ -1,6 +1,6 @@
 # Paint для MIK32V2
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/9e536936-8a9f-4897-95a7-6efa41ba9230" alt="Меню выбора кисти" width="180">
+  <img src="https://github.com/user-attachments/assets/9e536936-8a9f-4897-95a7-6efa41ba9230" alt="Меню выбора кисти" width="360">
 </p>
 
 **Встраиваемый графический редактор на C для MIK32V2 с TFT-дисплеем 480×320 и резистивной сенсорной панелью.**
