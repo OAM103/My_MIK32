@@ -1,0 +1,1277 @@
+﻿===== bdma.h =====
+/**
+ * @file    bdma.h
+ * @brief   Р”СЂР°Р№РІРµСЂ DMA 
+ */
+
+#ifndef BDMA_H
+#define BDMA_H
+
+/* Includes ------------------------------------------------------------------*/
+#include "mik32_hal_dma.h"
+#include "xprintf.h"
+
+/* Define --------------------------------------------------------------------*/
+#define TFT_WIDTH   480                 /* РЁРёСЂРёРЅР° СЌРєСЂР°РЅР° */
+#define TFT_HEIGHT  320                 /* Р’С‹СЃРѕС‚Р° СЌРєСЂР°РЅР° */
+#define DMA_BUFFER_SIZE (TFT_WIDTH * 3) /* Р Р°Р·РјРµСЂ Р±СѓС„РµСЂР° РґР»СЏ РѕРґРЅРѕР№ СЃС‚СЂРѕРєРё */
+
+/* Exported variables --------------------------------------------------------*/
+extern uint8_t *DMA_BUF;
+extern DMA_InitTypeDef hdma;
+extern DMA_ChannelHandleTypeDef hdma_ch0;
+
+/* Exported functions --------------------------------------------------------*/
+/**
+ * @brief       РџСЂРёРІСЏР·РєР° РІРЅРµС€РЅРµРіРѕ Р±СѓС„РµСЂР° РґР»СЏ DMA-РїРµСЂРµРґР°С‡Рё СЃС‚СЂРѕРє
+ * @param  buf  РЈРєР°Р·Р°С‚РµР»СЊ РЅР° Р±СѓС„РµСЂ СЂР°Р·РјРµСЂРѕРј DMA_BUFFER_SIZE
+ */
+void set_dma_buf(uint8_t *buf);
+
+/**
+ * @brief       РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ РєРѕРЅС‚СЂРѕР»Р»РµСЂР° DMA
+ */
+void DMA_Init(void);
+
+/**
+ * @brief       РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ РєР°РЅР°Р»Р° CH0 
+ * @param  hdma РћР±СЂР°Р±РѕС‚С‡РёРє DMA
+ */
+void DMA_CH0_Init(DMA_InitTypeDef *hdma);
+
+#endif /* __BDMA_H__ */
+
+===== bgpio.h =====
+/**
+ * @file    bgpio.h
+ * @brief   Р”СЂР°Р№РІРµСЂ GPIO
+ */
+
+#ifndef BGPIO_H
+#define BGPIO_H
+
+/* Includes ------------------------------------------------------------------*/
+#include "mik32_hal_gpio.h"
+#include "xprintf.h"
+
+/* Define --------------------------------------------------------------------*/
+#define CS            GPIO_PIN_4
+#define RS            GPIO_PIN_8
+#define RESET         GPIO_PIN_9
+#define LED           GPIO_PIN_10
+
+#define GPIO_CS       GPIO_1
+#define SLAVE_CS0     GPIO_PIN_10
+#define SLAVE_CS1     GPIO_PIN_11
+#define SLAVE_CS2     GPIO_PIN_14
+#define SLAVE_CS_ALL  (SLAVE_CS2 | SLAVE_CS1 | SLAVE_CS0)
+
+/* Exported functions --------------------------------------------------------*/
+/**
+ * @brief  РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ РІС‹РІРѕРґРѕРІ GPIO РґРёСЃРїР»РµСЏ Рё С€РёРЅС‹ SPI
+ */
+void GPIO_Init(void);
+
+#endif /* __BGPIO_H__ */
+
+===== bus_spi.h =====
+/**
+ * @file    bus_spi.h
+ * @brief   Р”СЂР°Р№РІРµСЂ SPI
+ */
+
+#ifndef BUS_SPI_H
+#define BUS_SPI_H
+
+/* Includes ------------------------------------------------------------------*/
+#include "mik32_hal_spi.h"
+#include "xprintf.h"
+
+/* Exported variables --------------------------------------------------------*/
+extern SPI_HandleTypeDef hspi0;
+extern SPI_HandleTypeDef hspi1;
+
+/* Exported functions --------------------------------------------------------*/
+/**
+ * @brief  РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ SPI0 (РґРёСЃРїР»РµР№) РІ СЂРµР¶РёРјРµ Master
+ */
+void SPI0_Init(void);
+
+/**
+ * @brief  РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ SPI1 (С‚Р°С‡РїР°Рґ) РІ СЂРµР¶РёРјРµ Master
+ */
+void SPI1_Init(void);
+
+#endif /* __BUS_SPI_H__ */
+
+===== lcd.h =====
+/**
+ * @file    lcd.h
+ * @brief   Р”СЂР°Р№РІРµСЂ TFT-РґРёСЃРїР»РµСЏ РЅР° Р±Р°Р·Рµ ILI9341 СЃ СЃРµРЅСЃРѕСЂРЅРѕР№ РїР°РЅРµР»СЊСЋ:
+ *          РёРЅРёС†РёР°Р»РёР·Р°С†РёСЏ Рё Р±Р°Р·РѕРІР°СЏ РѕС‚СЂРёСЃРѕРІРєР°.
+*/
+
+#ifndef LCD_H
+#define LCD_H
+
+/* Includes ------------------------------------------------------------------*/
+#include "mik32_hal.h"
+#include "bus_spi.h"
+#include "bgpio.h"
+#include "bdma.h"
+
+/* Define --------------------------------------------------------------------*/
+/* Exported functions --------------------------------------------------------*/
+
+/**
+ * @brief  РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ Рё РЅР°СЃС‚СЂРѕР№РєР° РґРёСЃРїР»РµСЏ
+ */
+void Lcd_Init(void);
+
+/**
+ * @brief          Р—Р°Р»РёРІРєР° РїСЂСЏРјРѕСѓРіРѕР»СЊРЅРѕР№ РѕР±Р»Р°СЃС‚Рё С‡РµСЂРµР· DMA
+ * @param  length  Р’С‹СЃРѕС‚Р° РІ РїРёРєСЃРµР»СЏС…
+ * @param  width   РЁРёСЂРёРЅР° РІ РїРёРєСЃРµР»СЏС…
+ * @param  d_l     РЎРјРµС‰РµРЅРёРµ РїРѕ РІРµСЂС‚РёРєР°Р»Рё
+ * @param  d_w     РЎРјРµС‰РµРЅРёРµ РїРѕ РіРѕСЂРёР·РѕРЅС‚Р°Р»Рё
+ * @param  color   Р¦РІРµС‚ Р·Р°Р»РёРІРєРё (RGB565)
+ */
+void ClearMassDMA(uint16_t length, uint16_t width, uint16_t d_l, uint16_t d_w, uint16_t color);
+
+/**
+ * @brief          РћС‚СЂРёСЃРѕРІРєР° Р·Р°Р»РёС‚РѕРіРѕ РїСЂСЏРјРѕСѓРіРѕР»СЊРЅРёРєР°
+ * @param  length  Р’С‹СЃРѕС‚Р° РІ РїРёРєСЃРµР»СЏС…
+ * @param  width   РЁРёСЂРёРЅР° РІ РїРёРєСЃРµР»СЏС…
+ * @param  y       РљРѕРѕСЂРґРёРЅР°С‚Р° d_l
+ * @param  x       РљРѕРѕСЂРґРёРЅР°С‚Р° d_w
+ * @param  color   Р¦РІРµС‚ Р·Р°Р»РёРІРєРё (RGB565)
+ */
+void draw_rect(uint16_t length, uint16_t width, uint16_t y, uint16_t x, uint16_t color);
+
+#endif /* LCD_H */
+
+===== system_config.h =====
+
+/**
+ * @file   system_config.h
+ * @brief  Р‘Р°Р·РѕРІР°СЏ РєРѕРЅС„РёРіСѓСЂР°С†РёСЏ MIK32 РђРјСѓСЂ
+ */ 
+
+#ifndef SYSTEM_CONFIG_H
+#define SYSTEM_CONFIG_H
+
+/* Includes ------------------------------------------------------------------*/
+#include "mik32_hal.h"
+#include "xprintf.h"
+
+/* Exported function prototypes -----------------------------------------------*/
+/**
+ * @brief РљРѕРЅС„РёРіСѓСЂР°С†РёСЏ РёСЃС‚РѕС‡РЅРёРєР° С‚Р°РєС‚РѕРІРѕРіРѕ СЃРёРіРЅР°Р»Р°
+ */
+void SystemClock_Config(void);
+
+#endif /* SYSTEM_CONFIG_H */
+
+===== touchpad.c =====
+/**
+ * @file    touchpad.c
+ * @brief   Р”СЂР°Р№РІРµСЂ С‚Р°С‡РїР°РґР° Рё СЂРёСЃРѕРІР°РЅРёРµ РїРѕ РєР°СЃР°РЅРёСЋ
+ */
+
+/* Includes ------------------------------------------------------------------*/
+#include "touchpad.h"
+
+static uint16_t brush_color = TOUCH_DEFAULT_COLOR;  // С†РІРµС‚ С‚РµРєСѓС‰РµР№ РєРёСЃС‚Рё
+static uint8_t brush_size = TOUCH_DEFAULT_SIZE;     // СЂР°Р·РјРµСЂ С‚РµРєСѓС‰РµР№ РєРёСЃС‚Рё
+
+void touch_set_color(uint16_t color)
+{
+    brush_color = color;
+}
+
+uint16_t touch_get_color(void)
+{
+    return brush_color;
+}
+
+void touch_set_brush_size(uint8_t size)
+{
+    if (size < TOUCH_MIN_BRUSH_SIZE) {
+        size = TOUCH_MIN_BRUSH_SIZE;
+    }
+
+    if (size > TOUCH_MAX_BRUSH_SIZE) {
+        size = TOUCH_MAX_BRUSH_SIZE;
+    }
+
+    brush_size = size;
+}
+
+uint8_t touch_get_brush_size(void)
+{
+    return brush_size;
+}
+
+/* Private functions ---------------------------------------------------------*/
+/**
+ * @brief  Р’С‹Р±РѕСЂ С‚Р°С‡РїР°РґР° РЅР° С€РёРЅРµ SPI 
+ */
+void touch_select(void)
+{
+    HAL_GPIO_WritePin(GPIO_CS, SLAVE_CS_ALL, __LOW); // СЃР±СЂРѕСЃ РІСЃРµС… CS
+    HAL_GPIO_WritePin(GPIO_CS, SLAVE_CS1, __HIGH);   // РІС‹Р±РѕСЂ С‚Р°С‡РїР°РґР° 
+}
+
+/**
+ * @brief  РЎРЅСЏС‚РёРµ РІС‹Р±РѕСЂР° С‚Р°С‡РїР°РґР°
+ */
+void touch_unselect(void)
+{
+    HAL_GPIO_WritePin(GPIO_CS, SLAVE_CS_ALL, __LOW);
+}
+
+/**
+ * @brief         РћРіСЂР°РЅРёС‡РµРЅРёРµ РєРѕРѕСЂРґРёРЅР°С‚ РіСЂР°РЅРёС†Р°РјРё СЌРєСЂР°РЅР°
+ * @param  x      Р“РѕСЂРёР·РѕРЅС‚Р°Р»СЊРЅР°СЏ РєРѕРѕСЂРґРёРЅР°С‚Р° 
+ * @param  y      Р’РµСЂС‚РёРєР°Р»СЊРЅР°СЏ РєРѕРѕСЂРґРёРЅР°С‚Р° 
+ */
+void touch_clamp_screen(int *x, int *y)
+{
+    if (*x < 0) {
+        *x = 0;                   // Р»РµРІР°СЏ РіСЂР°РЅРёС†Р°
+    }
+    if (*y < 0) {
+        *y = 0;                   // РІРµСЂС…РЅСЏСЏ РіСЂР°РЅРёС†Р°
+    }
+    if (*x >= TOUCH_SCREEN_H) {
+        *x = TOUCH_SCREEN_H - 1;  // РїСЂР°РІР°СЏ РіСЂР°РЅРёС†Р°
+    }
+    if (*y >= TOUCH_SCREEN_W) {
+        *y = TOUCH_SCREEN_W - 1;  // РЅРёР¶РЅСЏСЏ РіСЂР°РЅРёС†Р°
+    }
+}
+
+/**
+ * @brief         РћС‚СЂРёСЃРѕРІРєР° С‚РѕС‡РєРё РєР°СЃР°РЅРёСЏ 
+ * @param  x      Р“РѕСЂРёР·РѕРЅС‚Р°Р»СЊРЅР°СЏ РєРѕРѕСЂРґРёРЅР°С‚Р° 
+ * @param  y      Р’РµСЂС‚РёРєР°Р»СЊРЅР°СЏ РєРѕРѕСЂРґРёРЅР°С‚Р° 
+ */
+void touch_draw_stamp(int x, int y)
+{
+    int size;
+    int left;
+    int top;
+
+    size = brush_size;
+
+    left = x - size / 2 + 15;
+    top  = y - size / 2;
+
+    touch_clamp_screen(&left, &top);
+
+    draw_rect(size,
+              size,
+              top,
+              left,
+              brush_color);
+}
+/**
+ * @brief         Р›РёРЅРёСЏ РјРµР¶РґСѓ РґРІСѓРјСЏ С‚РѕС‡РєР°РјРё (Р°Р»РіРѕСЂРёС‚Рј Р‘СЂРµР·РµРЅС…СЌРјР°)
+ * @param  x0     РќР°С‡Р°Р»Рѕ, РіРѕСЂРёР·РѕРЅС‚Р°Р»СЊ
+ * @param  y0     РќР°С‡Р°Р»Рѕ, РІРµСЂС‚РёРєР°Р»СЊ
+ * @param  x1     РљРѕРЅРµС†, РіРѕСЂРёР·РѕРЅС‚Р°Р»СЊ
+ * @param  y1     РљРѕРЅРµС†, РІРµСЂС‚РёРєР°Р»СЊ
+ */
+void touch_stamp_line(int x0, int y0, int x1, int y1)
+{
+    int dx;
+    int dy;
+    int sx;
+    int sy;
+    int err;
+    int e2;
+    uint16_t steps = 0;
+
+    dx = ABS(x1 - x0);
+    sx = (x0 < x1) ? 1 : -1;
+    dy = -ABS(y1 - y0);
+    sy = (y0 < y1) ? 1 : -1;
+    err = dx + dy;
+
+    while (1) {
+        touch_draw_stamp(x0, y0);
+        if (x0 == x1 && y0 == y1) {
+            break;
+        }
+        e2 = 2 * err;
+        if (e2 >= dy) {
+            err += dy;
+            x0 += sx;
+        }
+        if (e2 <= dx) {
+            err += dx;
+            y0 += sy;
+        }
+        if (++steps > 600) {
+            break;
+        }
+    }
+}
+
+/**
+ * @brief         РЈСЃСЂРµРґРЅС‘РЅРЅРѕРµ С‡С‚РµРЅРёРµ РїР°СЂС‹ Y/X 
+ * @param  raw_x  РЈСЃСЂРµРґРЅС‘РЅРЅРѕРµ СЃС‹СЂРѕРµ Р·РЅР°С‡РµРЅРёРµ РѕСЃРё X
+ * @param  raw_y  РЈСЃСЂРµРґРЅС‘РЅРЅРѕРµ СЃС‹СЂРѕРµ Р·РЅР°С‡РµРЅРёРµ РѕСЃРё Y
+ * @return        1 вЂ” РєР°СЃР°РЅРёРµ РµСЃС‚СЊ, 0 вЂ” РЅРµС‚ РІР°Р»РёРґРЅС‹С… Р·РЅР°С‡РµРЅРёР№
+ */
+int touch_read_averaged(int *raw_x, int *raw_y)
+{
+    int32_t sum_x = 0;    
+    int32_t sum_y = 0;    
+    uint8_t valid = 0;
+
+    touch_select();
+
+    for (uint8_t i = 0; i < TOUCH_FILTER_SAMPLES; i++) {
+        int vy = read_coordinate(READ_Y);  // СЃРЅР°С‡Р°Р»Р° С‡РёС‚Р°РµРј Y
+        int vx = read_coordinate(READ_X);  // Р·Р°С‚РµРј X
+
+        if (vx > 0 && vy > 0) {
+            sum_x += vx;
+            sum_y += vy;
+            valid++;
+        }
+        HAL_DelayMs(TOUCH_FILTER_DELAY);  // РїР°СѓР·Р° РјРµР¶РґСѓ РёР·РјРµСЂРµРЅРёСЏРјРё
+    }
+
+    touch_unselect();
+
+    if (valid == 0) {
+        return 0;  // РЅРµС‚ РєР°СЃР°РЅРёСЏ 
+    }
+
+    *raw_x = (int)(sum_x / valid);  // СЃСЂРµРґРЅРµРµ РїРѕ X
+    *raw_y = (int)(sum_y / valid);  // СЃСЂРµРґРЅРµРµ РїРѕ Y
+    return 1;
+}
+
+/**
+ * @brief         РџСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёРµ РєРѕРѕСЂРґРёРЅР°С‚ РІ РїРёРєСЃРµР»Рё СЌРєСЂР°РЅР°
+ * @param  raw_x  РЎС‹СЂРѕРµ Р·РЅР°С‡РµРЅРёРµ РѕСЃРё X С‚Р°С‡РїР°РґР°
+ * @param  raw_y  РЎС‹СЂРѕРµ Р·РЅР°С‡РµРЅРёРµ РѕСЃРё Y С‚Р°С‡РїР°РґР°
+ * @param  sx     Р“РѕСЂРёР·РѕРЅС‚Р°Р»СЊРЅР°СЏ РєРѕРѕСЂРґРёРЅР°С‚Р° РЅР° РґРёСЃРїР»РµРµ
+ * @param  sy     Р’РµСЂС‚РёРєР°Р»СЊРЅР°СЏ РєРѕРѕСЂРґРёРЅР°С‚Р° РЅР° РґРёСЃРїР»РµРµ
+ * @return        1 вЂ” РєРѕРѕСЂРґРёРЅР°С‚С‹ РїРѕР»СѓС‡РµРЅС‹, 0 вЂ” РєР°СЃР°РЅРёСЏ РЅРµС‚
+ */
+int touch_raw_to_screen(int raw_x, int raw_y, int *sx, int *sy)
+{
+    int rx = raw_x;     int span_x;        
+    int ry = raw_y;     int span_y;
+
+    if (rx <= 0 || ry <= 0) {
+        return 0;  // РІС‹С…РѕРґ, РµСЃР»Рё РЅРµС‚ РєР°СЃР°РЅРёСЏ
+    }
+
+    /* РѕРіСЂР°РЅРёС‡РµРЅРёРµ Р·РЅР°С‡РµРЅРёР№ РґРѕРїСѓСЃС‚РёРјС‹Рј РґРёР°РїР°Р·РѕРЅРѕРј */
+    if (rx < TOUCH_MIN_RAW_X) {
+        rx = TOUCH_MIN_RAW_X;
+    }
+    if (rx > TOUCH_MAX_RAW) {
+        rx = TOUCH_MAX_RAW;
+    }
+    if (ry < TOUCH_MIN_RAW_Y) {
+        ry = TOUCH_MIN_RAW_Y;
+    }
+    if (ry > TOUCH_MAX_RAW) {
+        ry = TOUCH_MAX_RAW;
+    }
+
+    span_x = TOUCH_MAX_RAW - TOUCH_MIN_RAW_X;  // РґРёР°РїР°Р·РѕРЅ РїРѕ X
+    span_y = TOUCH_MAX_RAW - TOUCH_MIN_RAW_Y;  // РґРёР°РїР°Р·РѕРЅ РїРѕ Y
+    if (span_x <= 0 || span_y <= 0) {
+        return 0;
+    }
+
+    /* x  - РіРѕСЂРёР·РѕРЅС‚Р°Р»СЊ, y - РІРµСЂС‚РёРєР°Р»СЊ */
+    *sx = (rx - TOUCH_MIN_RAW_X) * (TOUCH_SCREEN_H - 1) / span_x;
+    *sy = (TOUCH_SCREEN_W - 1) - (ry - TOUCH_MIN_RAW_Y) * (TOUCH_SCREEN_W - 1) / span_y;
+
+    return 1;
+}
+
+/**
+ * @brief           Р§С‚РµРЅРёРµ РѕРґРЅРѕР№ РєРѕРѕСЂРґРёРЅР°С‚С‹ С‚Р°С‡РїР°РґР° РїРѕ SPI
+ * @param  command  РљРѕРјР°РЅРґР° С‡С‚РµРЅРёСЏ: READ_X (0xD0) РёР»Рё READ_Y (0x90)
+ * @return          12-Р±РёС‚РЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РєРѕРѕСЂРґРёРЅР°С‚ СЃ С‚Р°С‡РїР°РґР°, РёРЅР°С‡Рµ -1 РїСЂРё РѕС€РёР±РєРµ SPI
+ */
+int read_coordinate(unsigned char command)
+{
+    int16_t value;
+    // РџРѕРґРіРѕС‚РѕРІРєР° РїР°РєРµС‚Р° (РљРѕРјР°РЅРґР° + 2 Р±Р°Р№С‚Р° РґР»СЏ РїСЂРёРµРјР°)
+    uint8_t master_output[] = {command, 0x00, 0x00};  // РўР°С‡РїР°Рґ РѕС‚РїСЂР°РІР»СЏРµС‚ 12-Р±РёС‚РЅС‹Рµ РєРѕРѕСЂРґРёРЅРІР°С‚С‹, СѓРїР°РєРѕРІР°РЅРЅС‹Рµ РІ 2 Р±Р°Р№С‚Р°
+    uint8_t master_input[3] = {0}; // РРЅРёС†РёР°Р»РёР·РёСЂСѓРµРј РЅСѓР»СЏРјРё
+    
+    // РћР±РјРµРЅ РґР°РЅРЅС‹РјРё РїРѕ SPI (Р‘Р»РѕРєРёСЂСѓСЋС‰РёР№ СЂРµР¶РёРј)
+    HAL_StatusTypeDef SPI_Status = HAL_SPI_Exchange(&hspi1, master_output, master_input,
+                                                    sizeof(master_output),
+                                                    SPI_TIMEOUT_DEFAULT);  // РѕС‚РїСЂР°РІРєР° РєРѕРјР°РЅРґС‹
+
+    if (SPI_Status != HAL_OK) {
+        xprintf("SPI_Error %d, OVR %d, MODF %d\n", SPI_Status,
+                hspi1.ErrorCode & HAL_SPI_ERROR_OVR,
+                hspi1.ErrorCode & HAL_SPI_ERROR_MODF);
+        HAL_SPI_ClearError(&hspi1);
+        return -1;  // РѕС€РёР±РєР° РѕР±РјРµРЅР°
+    }
+
+    /*РљРѕРјР±РёРЅРёСЂРѕРІР°РЅРёРµ 12 Р±РёС‚ РґР°РЅРЅС‹С…
+
+    Р‘Р°Р№С‚С‹ 1 Рё 2 СЃРѕРґРµСЂР¶Р°С‚ 16 Р±РёС‚, РёР· РєРѕС‚РѕСЂС‹С… 12 Р±РёС‚ - СЌС‚Рѕ РїРѕР»РµР·РЅР°СЏ РЅР°РіСЂСѓР·РєР° (РєРѕРѕСЂРґРёРЅР°С‚Р°).
+    РћР±С‹С‡РЅРѕ 4 РјР»Р°РґС€РёС… Р±РёС‚Р° РїРµСЂРІРѕРіРѕ Р±Р°Р№С‚Р° Р±РµСЃРїРѕР»РµР·РЅС‹, Р° 4 СЃС‚Р°СЂС€РёС… Р±РёС‚Р° РІС‚РѕСЂРѕРіРѕ Р±Р°Р№С‚Р° Р±РµСЃРїРѕР»РµР·РЅС‹.
+    
+    РЎРѕР±РёСЂР°РµРј 12 Р±РёС‚: (master_input[1] << 4) | (master_input[2] >> 4)
+
+    value = ((master_input[1] & 0x0F) << 8) | master_input[2]; // РџСЂРѕСЃС‚Р°СЏ СЃР±РѕСЂРєР° 16 Р±РёС‚
+
+    РЎС‚Р°СЂС€РёР№ Р±Р°Р№С‚ (master_input[1]) СЃРѕРґРµСЂР¶РёС‚ 4 СЃС‚Р°СЂС€РёС… Р±РёС‚Р°
+    РњР»Р°РґС€РёР№ Р±Р°Р№С‚ (master_input[2]) СЃРѕРґРµСЂР¶РёС‚ 8 РјР»Р°РґС€РёС… Р±РёС‚*/
+
+    value = (master_input[1] << 4) | (master_input[2] >> 4);
+
+    return value;
+}
+
+/**
+ * @brief           РЈСЃСЂРµРґРЅС‘РЅРЅРѕРµ С‡С‚РµРЅРёРµ РѕРґРЅРѕР№ РѕСЃРё (РґР»СЏ button.c)
+ * @param  command  РљРѕРјР°РЅРґР° С‡С‚РµРЅРёСЏ: READ_X РёР»Рё READ_Y
+ * @param  samples  Р§РёСЃР»Рѕ Р·Р°РјРµСЂРѕРІ РґР»СЏ СѓСЃСЂРµРґРЅРµРЅРёСЏ
+ * @return          РЎСЂРµРґРЅРµРµ Р·РЅР°С‡РµРЅРёРµ РєРѕРѕСЂРґРёРЅР°С‚С‹, РёРЅР°С‡Рµ -1
+ */
+int read_filtered_coordinate(uint8_t command, uint8_t samples)
+{
+    int32_t sum = 0;
+    uint8_t valid = 0;
+
+    for (uint8_t i = 0; i < samples; i++) {
+        int val = read_coordinate(command);
+        if (val > 0) {   // С‚РѕР»СЊРєРѕ РєРѕСЂСЂРµРєС‚РЅС‹Рµ РёР·РјРµСЂРµРЅРёСЏ 
+            sum += val;
+            valid++;
+        }
+        HAL_DelayMs(2);  // РїР°СѓР·Р° РјРµР¶РґСѓ РёР·РјРµСЂРµРЅРёСЏРјРё
+    }
+
+    if (valid == 0) {
+        return -1;       // СЃРѕРѕС‚РІРµС‚СЃС‚РІРµРЅРЅРѕ РЅРµС‚ РґР°РЅРЅС‹С…
+    }
+
+    return sum / valid;  // СЃСЂРµРґРЅРµРµ Р·РЅР°С‡РµРЅРёРµ
+}
+
+/**
+ * @brief          Р›РёРЅРµР№РЅРѕРµ РїСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёРµ РєРѕРѕСЂРґРёРЅР°С‚С‹ РІ РґСЂСѓРіРѕР№ РґРёР°РїР°Р·РѕРЅ
+ * @param  value   РСЃС…РѕРґРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ
+ * @param  r1_max  Р’РµСЂС…РЅСЏСЏ РіСЂР°РЅРёС†Р° РёСЃС…РѕРґРЅРѕРіРѕ РґРёР°РїР°Р·РѕРЅР°
+ * @param  r1_min  РќРёР¶РЅСЏСЏ РіСЂР°РЅРёС†Р° РёСЃС…РѕРґРЅРѕРіРѕ РґРёР°РїР°Р·РѕРЅР°
+ * @param  r2_max  Р’РµСЂС…РЅСЏСЏ РіСЂР°РЅРёС†Р° С†РµР»РµРІРѕРіРѕ РґРёР°РїР°Р·РѕРЅР°
+ * @param  r2_min  РќРёР¶РЅСЏСЏ РіСЂР°РЅРёС†Р° С†РµР»РµРІРѕРіРѕ РґРёР°РїР°Р·РѕРЅР°
+ * @return         РџСЂРµРѕР±СЂР°Р·РѕРІР°РЅРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ СЃ РѕРіСЂР°РЅРёС‡РµРЅРёРµРј РїРѕ РіСЂР°РЅРёС†Р°Рј
+ */
+uint16_t transform(uint16_t value, uint16_t r1_max, uint16_t r1_min,
+                   uint16_t r2_max, uint16_t r2_min)
+{
+    int scale;    
+    int res;
+
+    if (value <= r1_min) {
+        return r2_min;  
+    }
+    if (value >= r1_max) {
+        return r2_max; 
+    }
+
+    scale = (r2_max - r2_min) * 1000 / (r1_max - r1_min);  
+    res = (value - r1_min) * scale / 1000;  // РїСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёРµ РєРѕРѕСЂРґРёРЅР°С‚ СЃ С‚Р°С‡РїР°РґР° РІ РєРѕРѕСЂРґРёРЅР°С‚С‹ СЌРєСЂР°РЅР°
+
+    if (res < r2_min) {
+        res = r2_min;  
+    }
+    if (res > r2_max) {
+        res = r2_max; 
+    }
+
+    return res;
+}
+
+/**
+ * @brief  Р РёСЃРѕРІР°РЅРёРµ Р»РёРЅРёР№ РїСЂРё РґРІРёР¶РµРЅРёРё СЃС‚РёР»СѓСЃР° РїРѕ СЌРєСЂР°РЅСѓ
+ */
+
+void touch_draw_lines(void)
+{
+    int x;
+    int y;
+    int raw_x;
+    int raw_y;
+
+    static int last_x = -1;
+    static int last_y = -1;
+
+    //Р§РёС‚Р°РµРј Рё С„РёР»СЊС‚СЂСѓРµРј РєРѕРѕСЂРґРёРЅР°С‚С‹. Р•СЃР»Рё РєР°СЃР°РЅРёСЏ РЅРµС‚, С‚Рѕ С‚РµРєСѓС‰РёР№ С€С‚СЂРёС… Р·Р°РєРѕРЅС‡РёР»СЃСЏ
+    if (!touch_read_averaged(&raw_x, &raw_y) || !touch_raw_to_screen(raw_x, raw_y, &x, &y))
+    {
+        last_x = -1;
+        last_y = -1;
+        return;
+    }
+
+    //Р•СЃР»Рё РїСЂРµРґС‹РґСѓС‰РµР№ С‚РѕС‡РєРё РЅРµС‚, СЌС‚Рѕ РЅР°С‡Р°Р»Рѕ РЅРѕРІРѕРіРѕ С€С‚СЂРёС…Р°.
+    if (last_x < 0 || last_y < 0)
+    {
+        touch_draw_stamp(x, y);
+
+        last_x = x;
+        last_y = y;
+
+        return;
+    }
+
+    //Р’С‹С‡РёСЃР»СЏРµРј РїРµСЂРµРјРµС‰РµРЅРёРµ РїРµСЂР°
+    int dx = x - last_x;
+    int dy = y - last_y;
+
+    //Р—Р°С‰РёС‚Р° РѕС‚ СЃРєР°С‡РєР° РєРѕРѕСЂРґРёРЅР°С‚. Р•СЃР»Рё РјРµР¶РґСѓ РґРІСѓРјСЏ РёР·РјРµСЂРµРЅРёСЏРјРё РєРѕРѕСЂРґРёРЅР°С‚Р° РёР·РјРµРЅРёР»Р°СЃСЊ СЃР»РёС€РєРѕРј СЃРёР»СЊРЅРѕ, РЅРµ СЃРѕРµРґРёРЅСЏРµРј С‚РѕС‡РєРё Р»РёРЅРёРµР№.
+    if ((dx * dx + dy * dy) > TOUCH_MAX_JUMP_SQ)
+    {
+        // РЎС‡РёС‚Р°РµРј С‚РµРєСѓС‰СѓСЋ С‚РѕС‡РєСѓ РЅР°С‡Р°Р»РѕРј РїСЂРѕРґРѕР»Р¶РµРЅРёСЏ С€С‚СЂРёС…Р°
+        touch_draw_stamp(x, y);
+
+        last_x = x;
+        last_y = y;
+
+        return;
+    }
+    touch_stamp_line(last_x, last_y, x, y); // РќРѕСЂРјР°Р»СЊРЅРѕРµ РїСЂРѕРґРѕР»Р¶РµРЅРёРµ С€С‚СЂРёС…Р°
+
+    //РўРµРєСѓС‰Р°СЏ С‚РѕС‡РєР° СЃС‚Р°РЅРѕРІРёС‚СЃСЏ РїСЂРµРґС‹РґСѓС‰РµР№ РґР»СЏ СЃР»РµРґСѓСЋС‰РµРіРѕ РІС‹Р·РѕРІР°.
+    last_x = x;
+    last_y = y;
+}
+
+/**
+ * @brief  РћР±СЂР°Р±РѕС‚РєР° РєР°СЃР°РЅРёСЏ Рё РѕС‚СЂРёСЃРѕРІРєР° РјР°СЂРєРµСЂР° 
+ *
+ * Р РёСЃСѓРµС‚ РјР°СЂРєРµСЂ (РїСЂСЏРјРѕСѓРіРѕР»СЊРЅРёРє 10Г—10) РІ С‚РѕС‡РєРµ РєР°СЃР°РЅРёСЏ, РµСЃР»Рё РєРѕРѕСЂРґРёРЅР°С‚С‹
+ * РёР·РјРµРЅРёР»РёСЃСЊ Р±РѕР»СЊС€Рµ С‡РµРј РЅР° 20 РїРёРєСЃРµР»РµР№
+ */
+void process_touchpad(void)
+{
+    int raw_x;    int sx;    static int last_raw_x = 0;
+    int raw_y;    int sy;    static int last_raw_y = 0;
+
+    if (!touch_read_averaged(&raw_x, &raw_y) ||
+        !touch_raw_to_screen(raw_x, raw_y, &sx, &sy)) {
+        return;  // РІС‹С…РѕРґ, РµСЃР»Рё РЅРµС‚ РєР°СЃР°РЅРёСЏ
+    }
+
+    /* РёРіРЅРѕСЂРёСЂРѕРІР°С‚СЊ "РґСЂРѕР¶Р°РЅРёРµ" РїСЂРё РєР°СЃР°РЅРёРё*/
+    if (ABS(raw_x - last_raw_x) < TOUCH_NOISE_THRESHOLD &&
+        ABS(raw_y - last_raw_y) < TOUCH_NOISE_THRESHOLD) {
+        return;
+    }
+
+    last_raw_x = raw_x;
+    last_raw_y = raw_y;
+
+    /* РјР°СЂРєРµСЂ 10Г—10 */
+    draw_rect(10, 10, sy, sx, TOUCH_DEFAULT_COLOR);
+}
+
+===== touchpad.h =====
+/**
+ * @file    touchpad.h
+ * @brief   Р”СЂР°Р№РІРµСЂ С‚Р°С‡РїР°РґР° Рё СЂРёСЃРѕРІР°РЅРёРµ РїРѕ РєР°СЃР°РЅРёСЋ
+ */
+
+#ifndef TOUCHPAD_H
+#define TOUCHPAD_H
+
+/* Includes ------------------------------------------------------------------*/
+#include "lcd.h"
+#include "bgpio.h"
+#include "bus_spi.h"
+
+/* Define --------------------------------------------------------------------*/
+#define ABS(x)   ((x) > 0 ? (x) : -(x))
+
+#define READ_Y                0x90      /* РљРѕРјР°РЅРґР° SPI РґР»СЏ С‡С‚РµРЅРёСЏ РєРѕРѕСЂРґРёРЅР°С‚С‹ Y */
+#define READ_X                0xD0      /* РљРѕРјР°РЅРґР° SPI РґР»СЏ С‡С‚РµРЅРёСЏ РєРѕРѕСЂРґРёРЅР°С‚С‹ X */
+#define TOUCH_DEFAULT_COLOR   0xF800    /* Р¦РІРµС‚ РєРёСЃС‚Рё */
+#define TOUCH_DEFAULT_SIZE    3         /* РўРµРєСѓС‰РёР№ СЂР°Р·РјРµСЂ РєРёСЃС‚Рё */
+
+#define TOUCH_MIN_BRUSH_SIZE  1         /* РњРёРЅРёРјР°Р»СЊРЅС‹Р№ СЂР°Р·РјРµСЂ РєРёСЃС‚Рё*/
+#define TOUCH_MAX_BRUSH_SIZE  30        /* РњР°РєСЃРёРјР°Р»СЊРЅС‹Р№ СЂР°Р·РјРµСЂ РєРёСЃС‚Рё */
+
+/* РљР°Р»РёР±СЂРѕРІРєР° СЃС‹СЂС‹С… РєРѕРѕСЂРґРёРЅР°С‚ */
+#define TOUCH_MIN_RAW_X       150       /* РњРёРЅРёРјСѓРј СЃС‹СЂРѕР№ РєРѕРѕСЂРґРёРЅР°С‚С‹ РіРѕСЂРёР·РѕРЅС‚Р°Р»СЊРЅРѕР№ X */
+#define TOUCH_MIN_RAW_Y       100       /* РњРёРЅРёРјСѓРј СЃС‹СЂРѕР№ РєРѕРѕСЂРґРёРЅР°С‚С‹ РІРµСЂС‚РёРєР°Р»СЊРЅРѕР№ Y */
+#define TOUCH_MAX_RAW         2032      /* РњР°РєСЃРёРјСѓРј СЃС‹СЂС‹С… РєРѕРѕСЂРґРёРЅР°С‚ */
+
+#define TOUCH_SCREEN_H        320       /* Р’С‹СЃРѕС‚Р° РѕР±Р»Р°СЃС‚Рё РєР°СЃР°РЅРёСЏ */
+#define TOUCH_SCREEN_W        480       /* РЁРёСЂРёРЅР° РѕР±Р»Р°СЃС‚Рё РєР°СЃР°РЅРёСЏ */
+
+#define TOUCH_FILTER_SAMPLES  8         /* Р§РёСЃР»Рѕ Р·Р°РјРµСЂРѕРІ РґР»СЏ СѓСЃСЂРµРґРЅРµРЅРёСЏ */
+#define TOUCH_FILTER_DELAY    1         /* Р’РµР»РёС‡РёРЅР° Р·Р°РґРµСЂР¶РєРё РјРµР¶РґСѓ РёР·РјРµСЂРµРЅРёСЏРјРё */        
+#define TOUCH_NOISE_THRESHOLD 20        /* РџРѕСЂРѕРі "РґСЂРѕР¶Р°РЅРёСЏ" */
+#define TOUCH_MAX_JUMP        200       /* РџРѕСЂРѕРі СЃРєР°С‡РєР° РєРѕРѕСЂРґРёРЅР°С‚ (РїРёРєСЃРµР»Рё) */
+#define TOUCH_MAX_JUMP_SQ     (TOUCH_MAX_JUMP * TOUCH_MAX_JUMP)
+#define TOUCH_DOT_SIZE        3         /* РўРѕР»С‰РёРЅР° С€С‚СЂРёС…Р° (РїРёРєСЃРµР»Рё)*/
+
+/* Exported function prototypes ----------------------------------------------*/
+/**
+ * @brief  Р’С‹Р±РѕСЂ С‚Р°С‡РїР°РґР° РЅР° С€РёРЅРµ SPI 
+ */
+void touch_select(void);
+
+/**
+ * @brief  РЎРЅСЏС‚РёРµ РІС‹Р±РѕСЂР° С‚Р°С‡РїР°РґР°
+ */
+void touch_unselect(void);
+
+/**
+ * @brief         РЈСЃСЂРµРґРЅС‘РЅРЅРѕРµ С‡С‚РµРЅРёРµ РїР°СЂС‹ Y/X 
+ * @param  raw_x  РЈСЃСЂРµРґРЅС‘РЅРЅРѕРµ СЃС‹СЂРѕРµ Р·РЅР°С‡РµРЅРёРµ РѕСЃРё X
+ * @param  raw_y  РЈСЃСЂРµРґРЅС‘РЅРЅРѕРµ СЃС‹СЂРѕРµ Р·РЅР°С‡РµРЅРёРµ РѕСЃРё Y
+ * @return        1 вЂ” РєР°СЃР°РЅРёРµ РµСЃС‚СЊ, 0 вЂ” РЅРµС‚ РІР°Р»РёРґРЅС‹С… Р·РЅР°С‡РµРЅРёР№
+ */
+int touch_read_averaged(int *raw_x, int *raw_y);
+
+/**
+ * @brief         РџСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёРµ РєРѕРѕСЂРґРёРЅР°С‚ РІ РїРёРєСЃРµР»Рё СЌРєСЂР°РЅР°
+ * @param  raw_x  РЎС‹СЂРѕРµ Р·РЅР°С‡РµРЅРёРµ РѕСЃРё X С‚Р°С‡РїР°РґР°
+ * @param  raw_y  РЎС‹СЂРѕРµ Р·РЅР°С‡РµРЅРёРµ РѕСЃРё Y С‚Р°С‡РїР°РґР°
+ * @param  sx     Р“РѕСЂРёР·РѕРЅС‚Р°Р»СЊРЅР°СЏ РєРѕРѕСЂРґРёРЅР°С‚Р° РЅР° РґРёСЃРїР»РµРµ
+ * @param  sy     Р’РµСЂС‚РёРєР°Р»СЊРЅР°СЏ РєРѕРѕСЂРґРёРЅР°С‚Р° РЅР° РґРёСЃРїР»РµРµ
+ * @return        1 вЂ” РєРѕРѕСЂРґРёРЅР°С‚С‹ РїРѕР»СѓС‡РµРЅС‹, 0 вЂ” РєР°СЃР°РЅРёСЏ РЅРµС‚
+ */
+int touch_raw_to_screen(int raw_x, int raw_y, int *sx, int *sy);
+
+/**
+ * @brief         РћРіСЂР°РЅРёС‡РµРЅРёРµ РєРѕРѕСЂРґРёРЅР°С‚ РіСЂР°РЅРёС†Р°РјРё СЌРєСЂР°РЅР°
+ * @param  x      Р“РѕСЂРёР·РѕРЅС‚Р°Р»СЊРЅР°СЏ РєРѕРѕСЂРґРёРЅР°С‚Р° 
+ * @param  y      Р’РµСЂС‚РёРєР°Р»СЊРЅР°СЏ РєРѕРѕСЂРґРёРЅР°С‚Р° 
+ */
+void touch_clamp_screen(int *x, int *y);
+
+/**
+ * @brief         РћС‚СЂРёСЃРѕРІРєР° С‚РѕС‡РєРё РєР°СЃР°РЅРёСЏ 
+ * @param  x      Р“РѕСЂРёР·РѕРЅС‚Р°Р»СЊРЅР°СЏ РєРѕРѕСЂРґРёРЅР°С‚Р° 
+ * @param  y      Р’РµСЂС‚РёРєР°Р»СЊРЅР°СЏ РєРѕРѕСЂРґРёРЅР°С‚Р° 
+ */
+void touch_draw_stamp(int x, int y);
+
+/**
+ * @brief         Р›РёРЅРёСЏ РјРµР¶РґСѓ РґРІСѓРјСЏ С‚РѕС‡РєР°РјРё (Р°Р»РіРѕСЂРёС‚Рј Р‘СЂРµР·РµРЅС…СЌРјР°, РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ С‚Р°РєР¶Рµ РґР»СЏ РѕС‚СЂРёСЃРѕРІРєРё РѕРєСЂСѓР¶РЅРѕСЃС‚РµР№)
+ * @param  x0     РќР°С‡Р°Р»Рѕ, РіРѕСЂРёР·РѕРЅС‚Р°Р»СЊ
+ * @param  y0     РќР°С‡Р°Р»Рѕ, РІРµСЂС‚РёРєР°Р»СЊ
+ * @param  x1     РљРѕРЅРµС†, РіРѕСЂРёР·РѕРЅС‚Р°Р»СЊ
+ * @param  y1     РљРѕРЅРµС†, РІРµСЂС‚РёРєР°Р»СЊ
+ */
+void touch_stamp_line(int x0, int y0, int x1, int y1);
+
+/**
+ * @brief           Р§С‚РµРЅРёРµ РѕРґРЅРѕР№ РєРѕРѕСЂРґРёРЅР°С‚С‹ С‚Р°С‡РїР°РґР° РїРѕ SPI
+ * @param  command  РљРѕРјР°РЅРґР° С‡С‚РµРЅРёСЏ: READ_X РёР»Рё READ_Y
+ * @return          12-Р±РёС‚РЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РєРѕРѕСЂРґРёРЅР°С‚С‹, РёРЅР°С‡Рµ -1 РїСЂРё РѕС€РёР±РєРµ
+ */
+int read_coordinate(unsigned char command);
+
+/**
+ * @brief           РЈСЃСЂРµРґРЅС‘РЅРЅРѕРµ С‡С‚РµРЅРёРµ РѕРґРЅРѕР№ РѕСЃРё
+ * @param  command  РљРѕРјР°РЅРґР° С‡С‚РµРЅРёСЏ: READ_X РёР»Рё READ_Y
+ * @param  samples  Р§РёСЃР»Рѕ Р·Р°РјРµСЂРѕРІ РґР»СЏ СѓСЃСЂРµРґРЅРµРЅРёСЏ
+ * @return          РЎСЂРµРґРЅРµРµ Р·РЅР°С‡РµРЅРёРµ РєРѕРѕСЂРґРёРЅР°С‚С‹, РёРЅР°С‡Рµ -1
+ */
+int read_filtered_coordinate(uint8_t command, uint8_t samples);
+
+/**
+ * @brief          Р›РёРЅРµР№РЅРѕРµ РїСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёРµ РєРѕРѕСЂРґРёРЅР°С‚С‹ РІ РґСЂСѓРіРѕР№ РґРёР°РїР°Р·РѕРЅ
+ * @param  value   РСЃС…РѕРґРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ
+ * @param  r1_max  Р’РµСЂС…РЅСЏСЏ РіСЂР°РЅРёС†Р° РёСЃС…РѕРґРЅРѕРіРѕ РґРёР°РїР°Р·РѕРЅР°
+ * @param  r1_min  РќРёР¶РЅСЏСЏ РіСЂР°РЅРёС†Р° РёСЃС…РѕРґРЅРѕРіРѕ РґРёР°РїР°Р·РѕРЅР°
+ * @param  r2_max  Р’РµСЂС…РЅСЏСЏ РіСЂР°РЅРёС†Р° С†РµР»РµРІРѕРіРѕ РґРёР°РїР°Р·РѕРЅР°
+ * @param  r2_min  РќРёР¶РЅСЏСЏ РіСЂР°РЅРёС†Р° С†РµР»РµРІРѕРіРѕ РґРёР°РїР°Р·РѕРЅР°
+ * @return         РџСЂРµРѕР±СЂР°Р·РѕРІР°РЅРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ СЃ РѕРіСЂР°РЅРёС‡РµРЅРёРµРј РїРѕ РіСЂР°РЅРёС†Р°Рј
+ */
+uint16_t transform(uint16_t value, uint16_t r1_max, uint16_t r1_min, uint16_t r2_max, uint16_t r2_min);
+
+/**
+ * @brief  Р РёСЃРѕРІР°РЅРёРµ Р»РёРЅРёР№ РїСЂРё РґРІРёР¶РµРЅРёРё СЃС‚РёР»СѓСЃР° РїРѕ СЌРєСЂР°РЅСѓ
+ */
+void touch_draw_lines(void);
+
+/**
+ * @brief  РћР±СЂР°Р±РѕС‚РєР° РєР°СЃР°РЅРёСЏ Рё РѕС‚СЂРёСЃРѕРІРєР° РјР°СЂРєРµСЂР° РЅР° СЌРєСЂР°РЅРµ
+ */
+void process_touchpad(void);
+
+void touch_set_color(uint16_t color);
+uint16_t touch_get_color(void);
+
+void touch_set_brush_size(uint8_t size);
+uint8_t touch_get_brush_size(void);
+
+#endif /* TOUCHPAD_H */
+
+===== bdma.c =====
+/**
+ * @file    bdma.c
+ * @brief   Р РµР°Р»РёР·Р°С†РёСЏ РґСЂР°Р№РІРµСЂР° DMA
+ */
+
+/* Includes ------------------------------------------------------------------*/
+#include "bdma.h"
+
+/* Private variables ---------------------------------------------------------*/
+DMA_InitTypeDef hdma;
+DMA_ChannelHandleTypeDef hdma_ch0;
+
+static uint8_t dma_buffer[DMA_BUFFER_SIZE];
+uint8_t *DMA_BUF;
+
+/**
+ * @brief       РџСЂРёРІСЏР·РєР° РІРЅРµС€РЅРµРіРѕ Р±СѓС„РµСЂР° РґР»СЏ DMA-РїРµСЂРµРґР°С‡Рё СЃС‚СЂРѕРє
+ * @param  buf  РЈРєР°Р·Р°С‚РµР»СЊ РЅР° Р±СѓС„РµСЂ СЂР°Р·РјРµСЂРѕРј DMA_BUFFER_SIZE
+ */
+void set_dma_buf(uint8_t *buf)
+{
+    DMA_BUF = buf;
+}
+
+/**
+ * @brief  РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ РєРѕРЅС‚СЂРѕР»Р»РµСЂР° DMA
+ */
+void DMA_Init(void)
+{
+    hdma.Instance = DMA_CONFIG;
+    hdma.CurrentValue = DMA_CURRENT_VALUE_ENABLE;
+    if (HAL_DMA_Init(&hdma) != HAL_OK)
+    {
+        xprintf("DMA_Init Error\n");
+    }
+
+    DMA_CH0_Init(&hdma);
+
+    set_dma_buf(dma_buffer);
+}
+
+/**
+ * @brief       РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ РєР°РЅР°Р»Р° CH0 
+ * @param  hdma РћР±СЂР°Р±РѕС‚С‡РёРє DMA
+ */
+void DMA_CH0_Init(DMA_InitTypeDef *hdma)
+{
+    hdma_ch0.dma = hdma;
+    hdma_ch0.ChannelInit.Channel = DMA_CHANNEL_0;
+    hdma_ch0.ChannelInit.Priority = DMA_CHANNEL_PRIORITY_VERY_HIGH;
+    hdma_ch0.ChannelInit.ReadMode = DMA_CHANNEL_MODE_MEMORY;
+    hdma_ch0.ChannelInit.ReadInc = DMA_CHANNEL_INC_ENABLE;
+    hdma_ch0.ChannelInit.ReadSize = DMA_CHANNEL_SIZE_BYTE;
+    hdma_ch0.ChannelInit.ReadBurstSize = 0;
+    hdma_ch0.ChannelInit.ReadRequest = DMA_CHANNEL_SPI_0_REQUEST;
+    hdma_ch0.ChannelInit.ReadAck = DMA_CHANNEL_ACK_DISABLE;
+    hdma_ch0.ChannelInit.WriteMode = DMA_CHANNEL_MODE_PERIPHERY;
+    hdma_ch0.ChannelInit.WriteInc = DMA_CHANNEL_INC_DISABLE;
+    hdma_ch0.ChannelInit.WriteSize = DMA_CHANNEL_SIZE_BYTE;
+    hdma_ch0.ChannelInit.WriteRequest = DMA_CHANNEL_SPI_0_REQUEST;
+    hdma_ch0.ChannelInit.WriteAck = DMA_CHANNEL_ACK_DISABLE;
+}
+
+===== bgpio.c =====
+/**
+ * @file    bgpio.c
+ * @brief   Р РµР°Р»РёР·Р°С†РёСЏ РґСЂР°Р№РІРµСЂР° GPIO 
+ */
+/* Includes ------------------------------------------------------------------*/
+#include "bgpio.h"
+
+/* Private functions ---------------------------------------------------------*/
+/**
+ * @brief  РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ РІС‹РІРѕРґРѕРІ GPIO РґРёСЃРїР»РµСЏ Рё С€РёРЅС‹ SPI
+ */
+void GPIO_Init(void) {
+    __HAL_PCC_GPIO_0_CLK_ENABLE();
+    __HAL_PCC_GPIO_1_CLK_ENABLE();
+    GPIO_InitTypeDef GPIO_InitStruct = {0};
+    GPIO_InitStruct.Pin = CS;
+    GPIO_InitStruct.Mode = HAL_GPIO_MODE_GPIO_OUTPUT;
+    GPIO_InitStruct.Pull = HAL_GPIO_PULL_NONE;
+    GPIO_InitStruct.DS = HAL_GPIO_DS_8MA;
+    HAL_GPIO_Init(GPIO_0, &GPIO_InitStruct);
+    GPIO_InitStruct.Pin = RS;
+    HAL_GPIO_Init(GPIO_0, &GPIO_InitStruct);
+    GPIO_InitStruct.Pin = RESET;
+    HAL_GPIO_Init(GPIO_0, &GPIO_InitStruct);
+    GPIO_InitStruct.Pin = LED;
+    HAL_GPIO_Init(GPIO_0, &GPIO_InitStruct);
+    GPIO_InitStruct.Pin = SLAVE_CS0 | SLAVE_CS1 | SLAVE_CS2;
+    GPIO_InitStruct.Mode = HAL_GPIO_MODE_GPIO_OUTPUT;
+    GPIO_InitStruct.Pull = HAL_GPIO_PULL_NONE;
+    HAL_GPIO_WritePin(GPIO_CS, SLAVE_CS_ALL, 0);
+    HAL_GPIO_WritePin(GPIO_0, RESET , 1);
+    HAL_GPIO_WritePin(GPIO_0, LED , 1);
+    
+    if (HAL_GPIO_Init(GPIO_CS, &GPIO_InitStruct) != HAL_OK)
+    {
+        xprintf("SPI_Init_Error\n");
+    }
+}
+
+===== bus_spi.c =====
+/**
+ * @file   bus_spi.c
+ * @brief  Р РµР°Р»РёР·Р°С†РёСЏ РґСЂР°Р№РІРµСЂР° SPI
+ */
+
+/* Includes ------------------------------------------------------------------*/
+#include "bus_spi.h"
+
+/* Private variables ---------------------------------------------------------*/
+SPI_HandleTypeDef hspi0;
+SPI_HandleTypeDef hspi1;
+
+/* Private functions ---------------------------------------------------------*/
+/**
+ * @brief        РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ SPI0 РІ СЂРµР¶РёРјРµ Master
+ */
+void SPI0_Init(void) {
+    hspi0.Instance = SPI_0;
+
+    /* Р РµР¶РёРј SPI */
+    hspi0.Init.SPI_Mode = HAL_SPI_MODE_MASTER;
+
+    /* РќР°СЃС‚СЂРѕР№РєРё */
+    hspi0.Init.CLKPhase = SPI_PHASE_ON;
+    hspi0.Init.CLKPolarity = SPI_POLARITY_HIGH;
+    hspi0.Init.ThresholdTX = 4;
+
+    /* РќР°СЃС‚СЂРѕР№РєРё РґР»СЏ РІРµРґСѓС‰РµРіРѕ */
+    hspi0.Init.BaudRateDiv = 0;
+    hspi0.Init.Decoder = SPI_DECODER_NONE;
+    hspi0.Init.ManualCS = SPI_MANUALCS_OFF;
+    hspi0.Init.ChipSelect = SPI_CS_0;
+
+    if (HAL_SPI_Init(&hspi0) != HAL_OK) {
+        xprintf("SPI_Init_Error\n");
+    }
+}
+
+/**
+ * @brief        РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ SPI1 РІ СЂРµР¶РёРјРµ Master
+ */
+void SPI1_Init(void)
+{
+    hspi1.Instance = SPI_1;
+
+    /* Р РµР¶РёРј SPI */
+    hspi1.Init.SPI_Mode = HAL_SPI_MODE_MASTER;
+
+    /* РќР°СЃС‚СЂРѕР№РєРё */
+    hspi1.Init.CLKPhase = SPI_PHASE_ON;
+    hspi1.Init.CLKPolarity = SPI_POLARITY_HIGH;
+    hspi1.Init.ThresholdTX = 4;
+
+    /* РќР°СЃС‚СЂРѕР№РєРё РґР»СЏ РІРµРґСѓС‰РµРіРѕ */
+    hspi1.Init.BaudRateDiv = SPI_BAUDRATE_DIV8;
+    hspi1.Init.Decoder = SPI_DECODER_NONE;
+    hspi1.Init.ManualCS = SPI_MANUALCS_ON;
+    hspi1.Init.ChipSelect = SPI_CS_0;      
+
+    if (HAL_SPI_Init(&hspi1) != HAL_OK)
+    {
+        xprintf("SPI_Init_Error\n");
+    }
+}
+
+===== lcd.c =====
+/**
+ * @file    lcd.c
+ * @brief   Р РµР°Р»РёР·Р°С†РёСЏ РґСЂР°Р№РІРµСЂР° TFT-РґРёСЃРїР»РµСЏ РЅР° Р±Р°Р·Рµ ILI9341 СЃ СЃРµРЅСЃРѕСЂРЅРѕР№ РїР°РЅРµР»СЊСЋ:
+ *          РёРЅРёС†РёР°Р»РёР·Р°С†РёСЏ Рё Р±Р°Р·РѕРІР°СЏ РѕС‚СЂРёСЃРѕРІРєР°.
+ */
+
+/* Includes ------------------------------------------------------------------*/
+#include "lcd.h"
+
+/* Private variables ---------------------------------------------------------*/
+extern SPI_HandleTypeDef hspi0;
+
+/* Private function prototypes -----------------------------------------------*/
+static void Lcd_Reset(void);
+static void Lcd_select(void);
+static void Lcd_unselect(void);
+static void Lcd_Writ_Bus(uint8_t d);
+static void Lcd_Write_Command(unsigned char command);
+static void Lcd_Write_Data(uint8_t data);
+static void Address_set(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2);
+static void lcd_dma_end(void);
+static void lcd_dma_send_row(uint16_t width);
+
+/* Private functions ---------------------------------------------------------*/
+
+/**
+ * @brief  РђРєС‚РёРІР°С†РёСЏ РґРёСЃРїР»РµСЏ (CS)
+ */
+static void Lcd_select(void)
+{
+    HAL_GPIO_WritePin(GPIO_0, CS, GPIO_PIN_LOW);
+}
+
+/**
+ * @brief  Р”РµР°РєС‚РёРІР°С†РёСЏ РґРёСЃРїР»РµСЏ (CS)
+ */
+static void Lcd_unselect(void)
+{
+    HAL_GPIO_WritePin(GPIO_0, CS, GPIO_PIN_HIGH);
+}
+
+/**
+ * @brief  РћС‚РїСЂР°РІРєР° 1 Р±Р°Р№С‚Р° РґР°РЅРЅС‹С… РёР»Рё РєРѕРјР°РЅРґС‹
+ */
+static void Lcd_Writ_Bus(uint8_t d)
+{
+    uint8_t out[] = {d};
+    uint8_t in[sizeof(out)];
+
+    HAL_SPI_Exchange(&hspi0, out, in, sizeof(out), SPI_TIMEOUT_DEFAULT);
+}
+
+/**
+ * @brief  РћС‚РїСЂР°РІРєР° РєРѕРјР°РЅРґС‹ (RS = 0)
+ */
+static void Lcd_Write_Command(unsigned char command)
+{
+    HAL_GPIO_WritePin(GPIO_0, RS, 0);
+    Lcd_Writ_Bus(command);
+}
+
+/**
+ * @brief  РћС‚РїСЂР°РІРєР° РґР°РЅРЅС‹С… (RS = 1)
+ */
+static void Lcd_Write_Data(uint8_t data)
+{
+    HAL_GPIO_WritePin(GPIO_0, RS, 1);
+    Lcd_Writ_Bus(data);
+}
+
+/**
+ * @brief  РЈСЃС‚Р°РЅРѕРІРєР° РѕР±Р»Р°СЃС‚Рё РїР°РјСЏС‚Рё LCD РґР»СЏ Р·Р°РїРёСЃРё РїРёРєСЃРµР»РµР№
+ */
+static void Address_set(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2)
+{
+    if (x1 > x2) {
+        uint16_t tmp = x1;
+        x1 = x2;
+        x2 = tmp;
+    }
+    if (y1 > y2) {
+        uint16_t tmp = y1;
+        y1 = y2;
+        y2 = tmp;
+    }
+
+    Lcd_Write_Command(0x2a);
+    Lcd_Write_Data(x1 >> 8);
+    Lcd_Write_Data(x1 & 0xFF);
+    Lcd_Write_Data(x2 >> 8);
+    Lcd_Write_Data(x2 & 0xFF);
+
+    Lcd_Write_Command(0x2b);
+    Lcd_Write_Data(y1 >> 8);
+    Lcd_Write_Data(y1 & 0xFF);
+    Lcd_Write_Data(y2 >> 8);
+    Lcd_Write_Data(y2 & 0xFF);
+
+    Lcd_Write_Command(0x2c);
+}
+
+/**
+ * @brief  РђРїРїР°СЂР°С‚РЅС‹Р№ СЃР±СЂРѕСЃ РґРёСЃРїР»РµСЏ
+ */
+static void Lcd_Reset(void)
+{
+    HAL_GPIO_WritePin(GPIO_0, RESET, 1);
+    HAL_DelayMs(2);
+    HAL_GPIO_WritePin(GPIO_0, RESET, 0);
+    HAL_DelayMs(5);
+    HAL_GPIO_WritePin(GPIO_0, RESET, 1);
+    HAL_DelayMs(2);
+}
+
+/**
+ * @brief       РћС‚РїСЂР°РІРєР° РѕРґРЅРѕР№ СЃС‚СЂРѕРєРё РїРёРєСЃРµР»РµР№ РёР· DMA_BUF РІ РґРёСЃРїР»РµР№
+ * @param width Р§РёСЃР»Рѕ РїРёРєСЃРµР»РµР№ РІ СЃС‚СЂРѕРєРµ
+ */
+static void lcd_dma_send_row(uint16_t width)
+{
+    HAL_DMA_Start(&hdma_ch0, (void *)DMA_BUF, (void *)&hspi0.Instance->TXDATA, width * 3 - 1);
+    HAL_DMA_Wait(&hdma_ch0, DMA_TIMEOUT_DEFAULT);
+}
+
+/**
+ * @brief  Р—Р°РІРµСЂС€РµРЅРёРµ SPI-СЃРµСЃСЃРёРё РїРѕСЃР»Рµ DMA-РѕС‚СЂРёСЃРѕРІРєРё
+ */
+static void lcd_dma_end(void)
+{
+    if (!(hspi0.Instance->CONFIG & SPI_CONFIG_MANUAL_CS_M)) {
+        __HAL_SPI_DISABLE(&hspi0);
+        hspi0.Instance->ENABLE |= SPI_ENABLE_CLEAR_TX_FIFO_M | SPI_ENABLE_CLEAR_RX_FIFO_M;
+    }
+    volatile uint32_t unused = hspi0.Instance->INT_STATUS;
+    (void)unused;
+    Lcd_unselect();
+}
+
+/* Exported functions --------------------------------------------------------*/
+
+/**
+ * @brief  РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ РґРёСЃРїР»РµСЏ
+ */
+void Lcd_Init(void)
+{
+    Lcd_Reset();
+    Lcd_select();
+
+    Lcd_Write_Command(0xF7);
+    Lcd_Write_Data(0xA9);
+    Lcd_Write_Data(0x51);
+    Lcd_Write_Data(0x2C);
+    Lcd_Write_Data(0x82);
+
+    Lcd_Write_Command(0xC0);
+    Lcd_Write_Data(0x11);
+    Lcd_Write_Data(0x09);
+
+    Lcd_Write_Command(0xC1);
+    Lcd_Write_Data(0x41);
+
+    Lcd_Write_Command(0xC5);
+    Lcd_Write_Data(0x00);
+    Lcd_Write_Data(0x0A);
+    Lcd_Write_Data(0x80);
+
+    Lcd_Write_Command(0xB1);
+    Lcd_Write_Data(0xB0);
+    Lcd_Write_Data(0x11);
+
+    Lcd_Write_Command(0xB4);
+    Lcd_Write_Data(0x02);
+
+    Lcd_Write_Command(0xB6);
+    Lcd_Write_Data(0x02);
+    Lcd_Write_Data(0x22);
+
+    Lcd_Write_Command(0xB7);
+    Lcd_Write_Data(0xC6);
+
+    Lcd_Write_Command(0xBE);
+    Lcd_Write_Data(0x00);
+    Lcd_Write_Data(0x04);
+
+    Lcd_Write_Command(0xE9);
+    Lcd_Write_Data(0x00);
+
+    Lcd_Write_Command(0x36);
+    Lcd_Write_Data(0x08);
+
+    Lcd_Write_Command(0x3A);
+    Lcd_Write_Data(0x66);
+
+    Lcd_Write_Command(0xE0);
+    Lcd_Write_Data(0x00);
+    Lcd_Write_Data(0x07);
+    Lcd_Write_Data(0x10);
+    Lcd_Write_Data(0x09);
+    Lcd_Write_Data(0x17);
+    Lcd_Write_Data(0x0B);
+    Lcd_Write_Data(0x41);
+    Lcd_Write_Data(0x89);
+    Lcd_Write_Data(0x4B);
+    Lcd_Write_Data(0x0A);
+    Lcd_Write_Data(0x0C);
+    Lcd_Write_Data(0x0E);
+    Lcd_Write_Data(0x18);
+    Lcd_Write_Data(0x1B);
+    Lcd_Write_Data(0x0F);
+
+    Lcd_Write_Command(0xE1);
+    Lcd_Write_Data(0x00);
+    Lcd_Write_Data(0x17);
+    Lcd_Write_Data(0x1A);
+    Lcd_Write_Data(0x04);
+    Lcd_Write_Data(0x0E);
+    Lcd_Write_Data(0x06);
+    Lcd_Write_Data(0x2F);
+    Lcd_Write_Data(0x45);
+    Lcd_Write_Data(0x43);
+    Lcd_Write_Data(0x02);
+    Lcd_Write_Data(0x0A);
+    Lcd_Write_Data(0x09);
+    Lcd_Write_Data(0x32);
+    Lcd_Write_Data(0x36);
+    Lcd_Write_Data(0x0F);
+
+    Lcd_Write_Command(0x11);
+    HAL_DelayMs(120);
+
+    Lcd_Write_Command(0x29);
+    Lcd_unselect();
+}
+
+/**
+ * @brief          РћС‚СЂРёСЃРѕРІРєР° Р·Р°Р»РёС‚РѕРіРѕ РїСЂСЏРјРѕСѓРіРѕР»СЊРЅРёРєР°
+ * @param  length  Р’С‹СЃРѕС‚Р° РІ РїРёРєСЃРµР»СЏС…
+ * @param  width   РЁРёСЂРёРЅР° РІ РїРёРєСЃРµР»СЏС…
+ * @param  y       РљРѕРѕСЂРґРёРЅР°С‚Р° d_l
+ * @param  x       РљРѕРѕСЂРґРёРЅР°С‚Р° d_w
+ * @param  color   Р¦РІРµС‚ Р·Р°Р»РёРІРєРё (RGB565)
+ */
+void draw_rect(uint16_t length, uint16_t width, uint16_t y, uint16_t x, uint16_t color)
+{
+    uint8_t r = (color >> 8) & 0xF8;
+    uint8_t g = (color >> 3) & 0xFC;
+    uint8_t b = (color << 3);
+    uint32_t pixels = (uint32_t)length * width;
+
+    Lcd_select();
+    HAL_GPIO_WritePin(GPIO_0, RS, 0);
+    Address_set(x, y, x + width - 1, y + length - 1);
+    HAL_GPIO_WritePin(GPIO_0, RS, 1);
+
+    __HAL_SPI_ENABLE(&hspi0);
+
+    while (pixels--) {
+        while (!(hspi0.Instance->INT_STATUS & SPI_INT_STATUS_TX_FIFO_NOT_FULL_M));
+        hspi0.Instance->TXDATA = r;
+        hspi0.Instance->TXDATA = g;
+        hspi0.Instance->TXDATA = b;
+    }
+
+    __HAL_SPI_DISABLE(&hspi0);
+    Lcd_unselect();
+}
+
+/**
+ * @brief          Р—Р°Р»РёРІРєР° РїСЂСЏРјРѕСѓРіРѕР»СЊРЅРѕР№ РѕР±Р»Р°СЃС‚Рё С‡РµСЂРµР· DMA
+ * @param  length  Р’С‹СЃРѕС‚Р° РІ РїРёРєСЃРµР»СЏС…
+ * @param  width   РЁРёСЂРёРЅР° РІ РїРёРєСЃРµР»СЏС…
+ * @param  d_l     РЎРјРµС‰РµРЅРёРµ РїРѕ РІРµСЂС‚РёРєР°Р»Рё
+ * @param  d_w     РЎРјРµС‰РµРЅРёРµ РїРѕ РіРѕСЂРёР·РѕРЅС‚Р°Р»Рё
+ * @param  color   Р¦РІРµС‚ Р·Р°Р»РёРІРєРё (RGB565)
+ */
+void ClearMassDMA(uint16_t length, uint16_t width, uint16_t d_l, uint16_t d_w, uint16_t color)
+{
+    uint8_t red   = (color >> 8) & 0xF8;
+    uint8_t green = (color >> 3) & 0xFC;
+    uint8_t blue  = (color << 3);
+
+    Lcd_select();
+    length++;
+    width++;
+    Address_set(d_w, d_l, width - 2 + d_w, length - 2 + d_l);
+    HAL_GPIO_WritePin(GPIO_0, RS, 1);
+    hspi0.ErrorCode = HAL_SPI_ERROR_NONE;
+    hspi0.Instance->TX_THR = 1;
+
+    if (!(hspi0.Instance->ENABLE & SPI_ENABLE_M)) {
+        __HAL_SPI_ENABLE(&hspi0);
+    }
+
+    for (uint16_t m = 0; m < length; m++) {
+        for (uint16_t i = 0; i < width; i++) {
+            DMA_BUF[i * 3 + 2] = red;
+            DMA_BUF[i * 3 + 0] = green;
+            DMA_BUF[i * 3 + 1] = blue;
+        }
+        lcd_dma_send_row(width);
+    }
+    lcd_dma_end();
+}
+
+===== main.c =====
+/**
+ * @file    main.c
+ * @brief   РџСЂРѕС€РёРІРєР° РґР»СЏ MIK32 РђРјСѓСЂ: LCD РґРёСЃРїР»РµР№ (480Г—320) Рё С‚Р°С‡РїР°Рґ. 
+ *          РџСЂРё РєР°СЃР°РЅРёРё СЌРєСЂР°РЅР° СЂРёСЃСѓРµС‚СЃСЏ РєСЂР°СЃРЅР°СЏ Р»РёРЅРёСЏ.
+ */
+
+/* Includes ------------------------------------------------------------------*/
+#include "system_config.h"
+#include "uart_lib.h"
+#include "touchpad.h"
+
+/* Private function prototypes -----------------------------------------------*/
+static void periph_Init(void);
+
+/* Private functions ---------------------------------------------------------*/
+int main(void)
+{
+    SystemClock_Config();
+    periph_Init();
+    /* РћС‡РёСЃС‚РєР° СЌРєСЂР°РЅР° */
+    ClearMassDMA(480, 320, 0, 0, 0xFFFF);
+
+    touch_set_brush_size(30);
+    touch_set_color(0x001F);
+    
+    while (1) {
+        touch_draw_lines();
+    }
+}
+
+/**
+ * @brief РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ РїРµСЂРµС„РµСЂРёРё
+ */
+static void periph_Init(void)
+{
+    HAL_Init();
+    GPIO_Init();
+    
+    UART_Init(UART_0, 3333, UART_CONTROL1_TE_M | UART_CONTROL1_M_8BIT_M, 0, 0);
+    SPI0_Init();
+    SPI1_Init();
+
+    Lcd_Init();
+    DMA_Init();
+}
+
+===== system_config.c =====
+/**
+ * @file    system_config.c
+ * @brief   Р‘Р°Р·РѕРІР°СЏ РєРѕРЅС„РёРіСѓСЂР°С†РёСЏ MIK32 РђРјСѓСЂ
+ */ 
+
+/* Includes ------------------------------------------------------------------*/
+#include "system_config.h"
+
+/* Private functions ---------------------------------------------------------*/
+/**
+ * @brief РљРѕРЅС„РёРіСѓСЂР°С†РёСЏ РёСЃС‚РѕС‡РЅРёРєР° С‚Р°РєС‚РѕРІРѕРіРѕ СЃРёРіРЅР°Р»Р°
+ */
+void SystemClock_Config(void) {
+    PCC_InitTypeDef PCC_OscInit = {0};
+
+    PCC_OscInit.OscillatorEnable = PCC_OSCILLATORTYPE_ALL;
+    PCC_OscInit.FreqMon.OscillatorSystem = PCC_OSCILLATORTYPE_OSC32M;
+    PCC_OscInit.FreqMon.ForceOscSys = PCC_FORCE_OSC_SYS_UNFIXED;
+    PCC_OscInit.FreqMon.Force32KClk = PCC_FREQ_MONITOR_SOURCE_OSC32K;
+    PCC_OscInit.AHBDivider = 0;
+    PCC_OscInit.APBMDivider = 0;
+    PCC_OscInit.APBPDivider = 0;
+    PCC_OscInit.HSI32MCalibrationValue = 125;
+    PCC_OscInit.LSI32KCalibrationValue = 8;
+    PCC_OscInit.RTCClockSelection = PCC_RTC_CLOCK_SOURCE_AUTO;
+    PCC_OscInit.RTCClockCPUSelection = PCC_CPU_RTC_CLOCK_SOURCE_OSC32K;
+    HAL_PCC_Config(&PCC_OscInit);
+}
+
