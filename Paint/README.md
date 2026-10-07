@@ -3,7 +3,7 @@
 **Встраиваемый графический редактор на C для MIK32V2 с TFT-дисплеем 480×320 и резистивной сенсорной панелью.**
 
 <p align="center">
-  <img src="<img width="664" height="450" alt="2026-10-07_17-08-21" src="https://github.com/user-attachments/assets/b530bf53-8d1c-437a-ac55-12da9663dcbb" />"  width="360">
+  <img src="<img width="664" height="450" alt="2026-10-07_17-08-21" src="https://github.com/user-attachments/assets/b321d90e-637a-48ed-a6cb-cae87dea684e" />" alt="Основной интерфейс Paint" width="360">
 </p>
 
 Проект разработан с учётом жёстких ограничений микроконтроллера: **32 МГц, 16 КБ RAM, ограниченный Flash и отсутствие ресурсов для полноэкранного framebuffer**.
