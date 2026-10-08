@@ -139,7 +139,7 @@ typedef enum
 Основная область экрана используется под холст.
 
 <p align="center">
-  <img src="[docs/images/ui-main.png](https://github.com/user-attachments/assets/e51998ce-aeec-4601-a8bc-fcfd6ebe8fa5)" alt="Основной интерфейс Paint" width="360">
+  <img src="https://github.com/user-attachments/assets/e51998ce-aeec-4601-a8bc-fcfd6ebe8fa5" alt="Основной интерфейс Paint" width="360">
 </p>
 
 Названия файлов изображений в README являются примером структуры. Если скриншоты имеют другие имена, достаточно заменить пути в соответствующих `<img>`.
