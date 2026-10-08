@@ -1027,18 +1027,6 @@ board_upload.maximum_size = 4194304
 
 Проект собирается через PlatformIO.
 
-## Сборка
-
-```bash
-pio run
-```
-
-## Загрузка прошивки
-
-```bash
-pio run -t upload
-```
-
 ## Конфигурация
 
 ```ini
