@@ -1,4 +1,5 @@
-<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/1a0edaf9-b266-4d93-96df-6cfff7ff1a16" /><img width="740" height="500" alt="2026-10-08_09-56-22" src="https://github.com/user-attachments/assets/b8cb1ad6-68ec-4650-8038-f43ae1b64a83" /># Paint для MIK32V2
+# Paint для MIK32V2
+
 <p align="center">
   <img src="https://github.com/user-attachments/assets/9e536936-8a9f-4897-95a7-6efa41ba9230" alt="Меню выбора кисти" width="360">
 </p>
