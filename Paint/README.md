@@ -1,4 +1,4 @@
-# Paint для MIK32V2
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/1a0edaf9-b266-4d93-96df-6cfff7ff1a16" /><img width="740" height="500" alt="2026-10-08_09-56-22" src="https://github.com/user-attachments/assets/b8cb1ad6-68ec-4650-8038-f43ae1b64a83" /># Paint для MIK32V2
 <p align="center">
   <img src="https://github.com/user-attachments/assets/9e536936-8a9f-4897-95a7-6efa41ba9230" alt="Меню выбора кисти" width="360">
 </p>
@@ -138,25 +138,17 @@ typedef enum
 Основная область экрана используется под холст.
 
 <p align="center">
-  <img src="docs/images/ui-main.png" alt="Основной интерфейс Paint" width="360">
+  <img src="[docs/images/ui-main.png](https://github.com/user-attachments/assets/e51998ce-aeec-4601-a8bc-fcfd6ebe8fa5)" alt="Основной интерфейс Paint" width="360">
 </p>
 
 Названия файлов изображений в README являются примером структуры. Если скриншоты имеют другие имена, достаточно заменить пути в соответствующих `<img>`.
 
 ## Меню кисти
 
-Меню содержит четыре варианта размера/параметров кисти.
+Меню содержит четыре варианта размера/параметров кисти. Отдельное меню позволяет выбирать геометрию кисти.
 
 <p align="center">
-  <img src="docs/images/ui-brush-menu.png" alt="Меню выбора кисти" width="180">
-</p>
-
-## Меню формы кисти
-
-Отдельное меню позволяет выбирать геометрию кисти:
-
-<p align="center">
-  <img src="docs/images/ui-brush-menu-2.png" alt="Меню выбора формы кисти" width="180">
+  <img src="https://github.com/user-attachments/assets/ee6cca8f-cd7a-45f7-8c8b-b1d12d5c414f" alt="RGB-меню" width="300">
 </p>
 
 ## RGB-меню
@@ -170,12 +162,8 @@ RGB-интерфейс содержит три вертикальных регу
 Справа отображается текущий выбранный цвет.
 
 <p align="center">
-  <img src="docs/images/ui-rgb-menu.png" alt="RGB-меню" width="300">
+  <img src="https://github.com/user-attachments/assets/6aa21114-d27a-47ec-9822-acb3af0d5008" alt="RGB-меню" width="300">
 </p>
-
-GitHub поддерживает относительные пути к изображениям в README, поэтому скриншоты можно хранить непосредственно в репозитории, например в `docs/images/`. HTML-тег `<img>` также поддерживается и позволяет задать небольшой размер изображения. citeturn0search1
-
----
 
 # Архитектура
 
@@ -1477,3 +1465,7 @@ RGB565 TFT
 
 - [Документация MIK32](https://mik32.ru/)
 - [Документация PlatformIO](https://docs.platformio.org/)
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/13bad336-193d-4c61-8182-fa01c01da68e" alt="RGB-меню" width="300">
+</p>
